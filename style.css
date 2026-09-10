@@ -466,3 +466,119 @@
 #leaderboard .site-leaderboard-row {
   flex-shrink: 0;
 }
+
+
+/* =========================================================
+   MASKED 5024 — POINTS + WEEKLY CHALLENGES
+   Match the existing JOIN THE ACTION visual language
+   ========================================================= */
+
+#points .points-grid,
+#weekly .weekly-card {
+  position: relative;
+}
+
+#points .points-card {
+  position: relative;
+  border: 2px solid #168cff;
+  border-radius: 12px;
+  background: rgba(3, 10, 20, 0.92);
+  box-shadow:
+    0 0 0 1px rgba(22,140,255,.14),
+    0 0 22px rgba(22,140,255,.16),
+    inset 0 0 18px rgba(22,140,255,.06);
+  font-family: inherit;
+}
+
+#points .points-card:hover {
+  border-color: #39a3ff;
+  box-shadow:
+    0 0 0 1px rgba(57,163,255,.18),
+    0 0 30px rgba(22,140,255,.24),
+    inset 0 0 20px rgba(22,140,255,.08);
+}
+
+#points .points-label,
+#points .points-row,
+#points .points-note,
+#points .mini-link,
+#points .points-card h3,
+#points .points-icon {
+  font-family: inherit;
+}
+
+#points .points-label {
+  color: #4ba9ff;
+}
+
+#points .points-row strong {
+  color: #fff;
+  text-shadow: 0 0 12px rgba(22,140,255,.35);
+}
+
+#points .mini-link {
+  color: #4ba9ff;
+}
+
+#points .points-warning {
+  border: 2px solid #168cff;
+  border-radius: 12px;
+  background: rgba(3, 10, 20, 0.92);
+  box-shadow:
+    0 0 22px rgba(22,140,255,.12),
+    inset 0 0 16px rgba(22,140,255,.05);
+}
+
+/* Weekly challenge — same blue framed panel treatment */
+#weekly .weekly-card {
+  border: 2px solid #168cff;
+  border-radius: 12px;
+  background: rgba(3, 10, 20, 0.92);
+  box-shadow:
+    0 0 0 1px rgba(22,140,255,.14),
+    0 0 28px rgba(22,140,255,.17),
+    inset 0 0 22px rgba(22,140,255,.06);
+}
+
+#weekly .weekly-badge {
+  border: 1px solid #168cff;
+  border-radius: 6px;
+  background: rgba(22,140,255,.08);
+  color: #55adff;
+}
+
+#weekly .weekly-content,
+#weekly .weekly-content h3,
+#weekly .weekly-content p,
+#weekly .weekly-rewards,
+#weekly .weekly-rewards div,
+#weekly .weekly-rewards strong,
+#weekly .weekly-rewards span,
+#weekly .weekly-footer,
+#weekly .weekly-footer .btn {
+  font-family: inherit;
+}
+
+#weekly .weekly-rewards div {
+  border: 1px solid rgba(22,140,255,.55);
+  border-radius: 9px;
+  background: rgba(3,10,20,.75);
+  box-shadow: inset 0 0 12px rgba(22,140,255,.04);
+}
+
+#weekly .weekly-rewards strong {
+  color: #fff;
+  text-shadow: 0 0 13px rgba(22,140,255,.4);
+}
+
+#weekly .weekly-footer {
+  border-top: 1px solid rgba(22,140,255,.35);
+}
+
+@media(max-width:700px) {
+  #points .points-card,
+  #points .points-warning,
+  #weekly .weekly-card {
+    border-width: 2px;
+  }
+}
