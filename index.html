@@ -41,6 +41,23 @@
       </div>
     </section>
 
+    <section class="launch-banner">
+      <div class="launch-inner">
+        <div>
+          <div class="eyebrow">COMPETITION COUNTDOWN</div>
+          <h2>THE BATTLE STARTS <span>16/09/2026</span></h2>
+          <p>Get ready. The MASKED competition runs until 25/10/2026.</p>
+        </div>
+        <div class="countdown" id="countdown" aria-label="Countdown to competition start">
+          <div><strong id="days">00</strong><small>DAYS</small></div>
+          <div><strong id="hours">00</strong><small>HOURS</small></div>
+          <div><strong id="minutes">00</strong><small>MINUTES</small></div>
+          <div><strong id="seconds">00</strong><small>SECONDS</small></div>
+        </div>
+        <a class="btn primary launch-btn" href="#competition">SEE THE PRIZES</a>
+      </div>
+    </section>
+
     <section id="partners" class="section">
       <div class="section-heading">
         <div class="eyebrow">OFFICIAL PARTNERS</div>
@@ -71,6 +88,19 @@
       <div class="notice">
         <strong>AFFILIATE DISCLOSURE</strong>
         <span>Some links on this website are affiliate links. MASKED_5024 may receive a commission if you sign up or take an eligible action through a partner link. 18+ only. Participate only where lawful and gamble responsibly.</span>
+      </div>
+    </section>
+
+    <section class="join-now">
+      <div class="join-content">
+        <div class="eyebrow">READY TO GET IN?</div>
+        <h2>JOIN THE <span>ACTION.</span></h2>
+        <p>Check out the official partner links, then follow MASKED_5024 for streams, announcements and competition updates.</p>
+        <div class="join-buttons">
+          <a class="btn primary big-btn" href="https://topkingclick.com/jxznhmfdt?utm_source=Streamers" target="_blank" rel="sponsored noopener noreferrer">JOIN KING BILLY ↗</a>
+          <a class="btn big-btn outline-btn" href="https://record.trustplaypartners.com/_GEsAlwog9Eu6qHIV_SINm2Nd7ZgqdRLk/5024/" target="_blank" rel="sponsored noopener noreferrer">JOIN SPINGRANDE ↗</a>
+        </div>
+        <div class="age-note">18+ ONLY • AFFILIATE LINKS • GAMBLE RESPONSIBLY</div>
       </div>
     </section>
 
@@ -120,5 +150,48 @@
     <p>© 2026 MASKED_5024. All rights reserved.</p>
     <p class="fine">18+ only. Gambling can be harmful. Please gamble responsibly. Partner availability, promotions and terms may vary. Affiliate disclosure: links may generate commission for MASKED_5024.</p>
   </footer>
+
+<script>
+(function () {
+  const target = new Date("2026-09-16T00:00:00+12:00").getTime();
+  const els = {
+    days: document.getElementById("days"),
+    hours: document.getElementById("hours"),
+    minutes: document.getElementById("minutes"),
+    seconds: document.getElementById("seconds"),
+    box: document.getElementById("countdown")
+  };
+
+  function update() {
+    const now = Date.now();
+    let diff = target - now;
+
+    if (diff <= 0) {
+      els.days.textContent = "00";
+      els.hours.textContent = "00";
+      els.minutes.textContent = "00";
+      els.seconds.textContent = "00";
+      els.box.classList.add("started");
+      return;
+    }
+
+    const days = Math.floor(diff / 86400000);
+    diff %= 86400000;
+    const hours = Math.floor(diff / 3600000);
+    diff %= 3600000;
+    const minutes = Math.floor(diff / 60000);
+    const seconds = Math.floor((diff % 60000) / 1000);
+
+    els.days.textContent = String(days).padStart(2, "0");
+    els.hours.textContent = String(hours).padStart(2, "0");
+    els.minutes.textContent = String(minutes).padStart(2, "0");
+    els.seconds.textContent = String(seconds).padStart(2, "0");
+  }
+
+  update();
+  setInterval(update, 1000);
+})();
+</script>
+
 </body>
 </html>
