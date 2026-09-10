@@ -111,7 +111,7 @@
         </div>
         <div class="leaderboard-foot">
           <span id="leaderboardStatus">Updating automatically</span>
-          <span>TOP 10 DISPLAYED</span>
+          <span>ALL PLAYERS DISPLAYED</span>
         </div>
       </div>
     </section>
@@ -312,7 +312,7 @@
 
       if (!players.length) throw new Error("No players found");
 
-      rowsEl.innerHTML = players.slice(0, 10).map(player => `
+      rowsEl.innerHTML = players.map(player => `
         <div class="site-leaderboard-row rank-${player.rank}">
           <div class="site-rank">${player.rank}</div>
           <div class="site-name">${escapeHTML(player.name)}</div>
