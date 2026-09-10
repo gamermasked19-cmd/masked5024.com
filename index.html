@@ -18,6 +18,9 @@
     <a class="brand" href="#top">MASKED<span>_5024</span></a>
     <nav>
       <a href="#competition">COMPETITION</a>
+      <a href="#leaderboard">🏆 LEADERBOARD</a>
+      <a href="#points">🎯 POINTS SYSTEM</a>
+      <a href="#weekly">🔥 WEEKLY CHALLENGES</a>
       <a href="#community">COMMUNITY</a>
     </nav>
   </header>
@@ -89,6 +92,102 @@
       </div>
     </section>
 
+
+    <section id="leaderboard" class="section leaderboard-section">
+      <div class="section-heading">
+        <div class="eyebrow">LIVE COMPETITION RANKINGS</div>
+        <h2>MASKED <span>LEADERBOARD</span></h2>
+        <p>Live points rankings. Scores are refreshed automatically from the competition leaderboard.</p>
+      </div>
+
+      <div class="leaderboard-card">
+        <div class="leaderboard-head">
+          <div>RANK</div>
+          <div>USERNAME</div>
+          <div>POINTS</div>
+        </div>
+        <div id="siteLeaderboardRows" class="site-leaderboard-rows">
+          <div class="leaderboard-loading">LOADING LEADERBOARD...</div>
+        </div>
+        <div class="leaderboard-foot">
+          <span id="leaderboardStatus">Updating automatically</span>
+          <span>TOP 10 DISPLAYED</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="points" class="section points-section">
+      <div class="section-heading">
+        <div class="eyebrow">HOW TO CLIMB THE RANKINGS</div>
+        <h2>🎯 POINTS <span>SYSTEM</span></h2>
+        <p>There are multiple ways to earn points off stream. All points are subject to verification by Masked.</p>
+      </div>
+
+      <div class="points-grid">
+        <article class="points-card">
+          <div class="points-icon">👑</div>
+          <div class="points-label">KING BILLY CASINO</div>
+          <h3>$20 BONUS BUY</h3>
+          <div class="points-row"><span>Weekly Challenge Winner</span><strong>+35</strong></div>
+          <div class="points-row"><span>Challenge Submission</span><strong>+10</strong></div>
+          <div class="points-note">Maximum 2 submissions per weekly challenge. King Billy Casino only.</div>
+          <a class="mini-link" href="#weekly">VIEW WEEKLY CHALLENGES ↗</a>
+        </article>
+
+        <article class="points-card">
+          <div class="points-icon">💰</div>
+          <div class="points-label">KING BILLY CASINO</div>
+          <h3>DEPOSIT POINTS</h3>
+          <div class="points-row"><span>Every $30+ deposit after initial $50</span><strong>+15</strong></div>
+          <div class="points-note">Send proof of each qualifying deposit to Masked via Instagram. Points are added after proof is received and verified.</div>
+          <a class="mini-link" href="https://www.instagram.com/masked_5024" target="_blank" rel="noopener noreferrer">SEND PROOF VIA INSTAGRAM ↗</a>
+        </article>
+
+        <article class="points-card">
+          <div class="points-icon">🎰</div>
+          <div class="points-label">SPINGRANDE CASINO</div>
+          <h3>SIGN UP + DEPOSIT</h3>
+          <div class="points-row"><span>Sign up + first $40 deposit</span><strong>+50</strong></div>
+          <div class="points-row"><span>Every additional $40 deposited</span><strong>+15</strong></div>
+          <div class="points-note">Use Masked's Spingrande link for the qualifying sign-up and first deposit.</div>
+          <a class="mini-link" href="https://record.trustplaypartners.com/_GEsAlwog9Eu6qHIV_SINm2Nd7ZgqdRLk/5024/" target="_blank" rel="sponsored noopener noreferrer">JOIN SPINGRANDE ↗</a>
+        </article>
+      </div>
+
+      <div class="points-warning">
+        <strong>⚠ POINT VERIFICATION</strong>
+        <span>Players must provide valid proof when required. Points are only added after the required proof has been received and verified by Masked.</span>
+      </div>
+    </section>
+
+    <section id="weekly" class="section weekly-section">
+      <div class="section-heading">
+        <div class="eyebrow">COMPETE EVERY WEEK</div>
+        <h2>🔥 WEEKLY <span>CHALLENGES</span></h2>
+        <p>Take on the weekly challenge and earn points toward the MASKED competition.</p>
+      </div>
+
+      <div class="weekly-card">
+        <div class="weekly-badge">WEEKLY BONUS BUY</div>
+        <div class="weekly-content">
+          <div>
+            <div class="eyebrow">KING BILLY CASINO ONLY ❗</div>
+            <h3>$20 BONUS BUY</h3>
+            <p>Complete the weekly challenge for your chance to win bonus points on the MASKED leaderboard.</p>
+          </div>
+          <div class="weekly-rewards">
+            <div><strong>+35</strong><span>WINNER</span></div>
+            <div><strong>+10</strong><span>SUBMISSION</span></div>
+            <div><strong>2</strong><span>MAX SUBMISSIONS</span></div>
+          </div>
+        </div>
+        <div class="weekly-footer">
+          <span>Check this section each week for the current challenge.</span>
+          <a class="btn primary" href="https://www.instagram.com/masked_5024" target="_blank" rel="noopener noreferrer">FOLLOW MASKED FOR UPDATES ↗</a>
+        </div>
+      </div>
+    </section>
+
     <section id="community" class="section community">
       <div class="section-heading">
         <div class="eyebrow">JOIN THE CREW</div>
@@ -155,6 +254,100 @@
 
   update();
   setInterval(update, 1000);
+})();
+</script>
+
+<script>
+(function () {
+  // Google Sheet used for the live competition leaderboard.
+  const SHEET_URL = "https://docs.google.com/spreadsheets/d/18md9nIesSL6ybUr6jGpo5O-vDA6gLYuNHIAp2okEC60/export?format=csv";
+  const rowsEl = document.getElementById("siteLeaderboardRows");
+  const statusEl = document.getElementById("leaderboardStatus");
+
+  function parseCSVLine(line) {
+    const result = [];
+    let current = "";
+    let quoted = false;
+
+    for (let i = 0; i < line.length; i++) {
+      const char = line[i];
+      const next = line[i + 1];
+
+      if (char === '"' && quoted && next === '"') {
+        current += '"';
+        i++;
+      } else if (char === '"') {
+        quoted = !quoted;
+      } else if (char === "," && !quoted) {
+        result.push(current);
+        current = "";
+      } else {
+        current += char;
+      }
+    }
+    result.push(current);
+    return result;
+  }
+
+  async function loadLeaderboard() {
+    try {
+      const response = await fetch(SHEET_URL + "&t=" + Date.now(), {
+        cache: "no-store"
+      });
+
+      if (!response.ok) throw new Error("Leaderboard request failed");
+
+      const csv = await response.text();
+
+      const players = csv
+        .split(/\r?\n/)
+        .map(parseCSVLine)
+        .map(cols => ({
+          name: (cols[0] || "").trim(),
+          score: Number(String(cols[1] || "0").replace(/[^0-9.-]/g, "")) || 0
+        }))
+        .filter(player => player.name !== "")
+        .sort((a, b) => b.score - a.score)
+        .map((player, index) => ({ ...player, rank: index + 1 }));
+
+      if (!players.length) throw new Error("No players found");
+
+      rowsEl.innerHTML = players.slice(0, 10).map(player => `
+        <div class="site-leaderboard-row rank-${player.rank}">
+          <div class="site-rank">${player.rank}</div>
+          <div class="site-name">${escapeHTML(player.name)}</div>
+          <div class="site-score">${player.score.toLocaleString()}</div>
+        </div>
+      `).join("");
+
+      statusEl.textContent = "LIVE • UPDATED " + new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit"
+      });
+    } catch (error) {
+      console.error(error);
+      rowsEl.innerHTML = `
+        <div class="leaderboard-error">
+          LEADERBOARD TEMPORARILY UNAVAILABLE
+          <small>Make sure the Google Sheet is publicly accessible.</small>
+        </div>
+      `;
+      statusEl.textContent = "Unable to update";
+    }
+  }
+
+  function escapeHTML(value) {
+    return value.replace(/[&<>"']/g, char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#039;"
+    }[char]));
+  }
+
+  loadLeaderboard();
+  setInterval(loadLeaderboard, 60000);
 })();
 </script>
 
