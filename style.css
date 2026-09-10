@@ -569,3 +569,324 @@
     align-items: flex-start;
   }
 }
+
+
+/* =========================================================
+   MOBILE PHONE OPTIMISATION — MASKED 5024
+   Keeps the desktop design intact and gives mobile its own
+   clean spacing, columns, borders and readable type.
+   ========================================================= */
+
+@media screen and (max-width: 600px) {
+
+  html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+  }
+
+  body {
+    font-size: 14px;
+  }
+
+  /* Keep section content comfortably inside an iPhone screen */
+  .section,
+  .section-heading,
+  .leaderboard-card,
+  .weekly-card,
+  #points .points-grid,
+  #points .points-warning,
+  #eligibility .eligibility-card {
+    width: auto !important;
+    max-width: none !important;
+    margin-left: 18px !important;
+    margin-right: 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  .section {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .section-heading {
+    margin-bottom: 28px !important;
+  }
+
+  .section-heading h2 {
+    font-size: clamp(32px, 10vw, 48px) !important;
+    line-height: 1.02 !important;
+    letter-spacing: -1px !important;
+  }
+
+  .section-heading p {
+    font-size: 15px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* ================= LEADERBOARD ================= */
+
+  #leaderboard .leaderboard-card {
+    border: 2px solid #168cff !important;
+    border-radius: 12px !important;
+    overflow: hidden !important;
+    background: rgba(3,10,20,.96) !important;
+  }
+
+  #leaderboard .leaderboard-head {
+    display: grid !important;
+    grid-template-columns: 54px minmax(0, 1fr) 78px !important;
+    gap: 0 !important;
+    min-height: 48px !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+    font-size: 8px !important;
+    letter-spacing: 1px !important;
+  }
+
+  #leaderboard .site-leaderboard-rows {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  #leaderboard .site-leaderboard-row {
+    display: grid !important;
+    grid-template-columns: 54px minmax(0, 1fr) 78px !important;
+    gap: 0 !important;
+    width: 100% !important;
+    min-height: 54px !important;
+    padding: 0 12px !important;
+    box-sizing: border-box !important;
+    font-size: 11px !important;
+  }
+
+  #leaderboard .site-rank {
+    text-align: left !important;
+    font-size: 12px !important;
+  }
+
+  #leaderboard .site-name {
+    min-width: 0 !important;
+    text-align: left !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    padding-right: 8px !important;
+  }
+
+  #leaderboard .site-score {
+    text-align: right !important;
+    font-size: 13px !important;
+  }
+
+  #leaderboard .leaderboard-foot {
+    padding: 12px !important;
+    font-size: 7px !important;
+  }
+
+  /* ================= POINTS SYSTEM ================= */
+
+  #points .points-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  #points .points-card {
+    display: block !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 21px 17px !important;
+    border: 2px solid #168cff !important;
+    border-radius: 12px !important;
+    background: rgba(3,10,20,.94) !important;
+  }
+
+  #points .points-icon {
+    font-size: 25px !important;
+    margin-bottom: 9px !important;
+  }
+
+  #points .points-label {
+    font-size: 9px !important;
+    letter-spacing: 1.5px !important;
+  }
+
+  #points .points-card h3 {
+    margin: 7px 0 17px !important;
+    font-size: 22px !important;
+    line-height: 1.15 !important;
+  }
+
+  #points .points-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) auto !important;
+    align-items: center !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding: 12px 0 !important;
+    box-sizing: border-box !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+  }
+
+  #points .points-row span {
+    min-width: 0 !important;
+  }
+
+  #points .points-row strong {
+    font-size: 17px !important;
+    white-space: nowrap !important;
+  }
+
+  #points .points-note {
+    font-size: 10px !important;
+    line-height: 1.55 !important;
+  }
+
+  #points .mini-link {
+    display: inline-block !important;
+    max-width: 100% !important;
+    font-size: 8px !important;
+    line-height: 1.4 !important;
+  }
+
+  #points .points-warning {
+    display: block !important;
+    width: auto !important;
+    padding: 15px !important;
+    box-sizing: border-box !important;
+  }
+
+  #points .points-warning strong {
+    display: block !important;
+    margin-bottom: 7px !important;
+  }
+
+  #points .points-warning span {
+    display: block !important;
+    font-size: 10px !important;
+    line-height: 1.55 !important;
+  }
+
+  /* ================= WEEKLY CHALLENGES ================= */
+
+  #weekly .weekly-card {
+    width: auto !important;
+    padding: 20px 17px !important;
+    border: 2px solid #168cff !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  #weekly .weekly-content {
+    display: block !important;
+    margin-top: 20px !important;
+  }
+
+  #weekly .weekly-content h3 {
+    font-size: 28px !important;
+    line-height: 1.1 !important;
+  }
+
+  #weekly .weekly-content p {
+    font-size: 12px !important;
+    line-height: 1.55 !important;
+  }
+
+  #weekly .weekly-rewards {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0,1fr)) !important;
+    gap: 7px !important;
+    width: 100% !important;
+    margin-top: 20px !important;
+  }
+
+  #weekly .weekly-rewards div {
+    min-width: 0 !important;
+    padding: 13px 4px !important;
+    box-sizing: border-box !important;
+  }
+
+  #weekly .weekly-rewards strong {
+    font-size: 20px !important;
+  }
+
+  #weekly .weekly-rewards span {
+    font-size: 6px !important;
+    line-height: 1.25 !important;
+    letter-spacing: .6px !important;
+  }
+
+  #weekly .weekly-footer {
+    display: block !important;
+    margin-top: 20px !important;
+    padding-top: 17px !important;
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+  }
+
+  #weekly .weekly-footer .btn {
+    display: block !important;
+    width: 100% !important;
+    margin-top: 13px !important;
+    box-sizing: border-box !important;
+    text-align: center !important;
+  }
+
+  /* ================= ELIGIBILITY ================= */
+
+  #eligibility .eligibility-card {
+    width: auto !important;
+    padding: 4px 15px 18px !important;
+    border: 2px solid #168cff !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  #eligibility .eligibility-item {
+    display: grid !important;
+    grid-template-columns: 48px minmax(0,1fr) !important;
+    gap: 12px !important;
+    padding: 18px 0 !important;
+  }
+
+  #eligibility .eligibility-number {
+    width: 43px !important;
+    height: 36px !important;
+    font-size: 10px !important;
+  }
+
+  #eligibility .eligibility-item h3 {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+  }
+
+  #eligibility .eligibility-item p {
+    font-size: 10px !important;
+    line-height: 1.55 !important;
+  }
+
+  #eligibility .eligibility-note {
+    display: block !important;
+    margin-top: 17px !important;
+    padding: 13px !important;
+  }
+
+  #eligibility .eligibility-note strong {
+    display: block !important;
+    margin-bottom: 7px !important;
+  }
+
+  #eligibility .eligibility-note span {
+    display: block !important;
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Prevent any image/logo from creating horizontal overflow */
+  img, video, iframe {
+    max-width: 100% !important;
+    height: auto;
+  }
+}
