@@ -466,3 +466,106 @@
 #leaderboard .site-leaderboard-row {
   flex-shrink: 0;
 }
+
+
+/* ===== COMPETITION ELIGIBILITY ===== */
+#eligibility {
+  scroll-margin-top: 90px;
+}
+
+#eligibility .eligibility-card {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 8px 24px 24px;
+  border: 2px solid #168cff;
+  border-radius: 12px;
+  background: rgba(3, 10, 20, 0.92);
+  box-shadow:
+    0 0 0 1px rgba(22,140,255,.14),
+    0 0 28px rgba(22,140,255,.17),
+    inset 0 0 22px rgba(22,140,255,.06);
+  font-family: inherit;
+}
+
+#eligibility .eligibility-item {
+  display: grid;
+  grid-template-columns: 72px minmax(0,1fr);
+  gap: 18px;
+  align-items: center;
+  padding: 23px 0;
+  border-bottom: 1px solid rgba(22,140,255,.22);
+}
+
+#eligibility .eligibility-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 40px;
+  border: 1px solid #168cff;
+  border-radius: 7px;
+  background: rgba(22,140,255,.08);
+  color: #4ba9ff;
+  font: 800 12px Orbitron,sans-serif;
+  letter-spacing: 1px;
+}
+
+#eligibility .eligibility-item h3 {
+  margin: 0 0 7px;
+  color: #fff;
+  font: 900 17px Orbitron,sans-serif;
+}
+
+#eligibility .eligibility-item p {
+  margin: 0;
+  color: #91a3bc;
+  font: inherit;
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+#eligibility .eligibility-item strong {
+  color: #fff;
+}
+
+#eligibility .eligibility-note {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 22px;
+  padding: 16px 18px;
+  border: 1px solid rgba(22,140,255,.45);
+  border-radius: 9px;
+  background: rgba(22,140,255,.05);
+  color: #8191a7;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+#eligibility .eligibility-note strong {
+  color: #4ba9ff;
+  font: 800 9px Orbitron,sans-serif;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+@media(max-width:700px) {
+  #eligibility .eligibility-card {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  #eligibility .eligibility-item {
+    grid-template-columns: 58px minmax(0,1fr);
+    gap: 12px;
+  }
+
+  #eligibility .eligibility-number {
+    width: 45px;
+  }
+
+  #eligibility .eligibility-note {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
