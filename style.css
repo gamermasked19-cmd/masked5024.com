@@ -890,3 +890,105 @@
     height: auto;
   }
 }
+
+
+/* ===== FINAL MOBILE REPAIR — v2 ===== */
+.mobile-menu-toggle { display: none; }
+
+@media screen and (max-width: 600px) {
+  .mobile-menu-toggle {
+    display: flex !important;
+    position: absolute !important;
+    top: 14px !important;
+    right: 16px !important;
+    z-index: 9999 !important;
+    width: 42px !important;
+    height: 42px !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid #168cff !important;
+    border-radius: 8px !important;
+    background: rgba(3,10,20,.95) !important;
+    color: #fff !important;
+    font-size: 22px !important;
+    cursor: pointer !important;
+  }
+
+  header.nav {
+    position: relative !important;
+    min-height: 72px !important;
+    padding: 16px 60px 16px 18px !important;
+    box-sizing: border-box !important;
+  }
+
+  header.nav nav {
+    display: none !important;
+    position: absolute !important;
+    top: 64px !important;
+    left: 12px !important;
+    right: 12px !important;
+    z-index: 9998 !important;
+    padding: 10px !important;
+    border: 2px solid #168cff !important;
+    border-radius: 10px !important;
+    background: #030a14 !important;
+    box-shadow: 0 0 30px rgba(22,140,255,.25) !important;
+  }
+
+  header.nav nav.mobile-open {
+    display: grid !important;
+  }
+
+  header.nav nav a {
+    display: block !important;
+    padding: 12px 10px !important;
+    font-size: 10px !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Prevent the site from inheriting huge desktop section widths */
+  main, section, .section, .container {
+    max-width: 100% !important;
+  }
+
+  .section-heading h2 {
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  /* True mobile leaderboard table */
+  #leaderboard .leaderboard-card {
+    margin: 0 12px !important;
+    width: calc(100% - 24px) !important;
+  }
+
+  #leaderboard .leaderboard-head,
+  #leaderboard .site-leaderboard-row {
+    grid-template-columns: 48px minmax(0,1fr) 72px !important;
+  }
+
+  /* Compact, bordered point cards */
+  #points .points-card {
+    margin: 0 !important;
+  }
+
+  #points .points-grid {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    width: calc(100% - 24px) !important;
+  }
+
+  /* Weekly challenge */
+  #weekly .weekly-card {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    width: calc(100% - 24px) !important;
+  }
+
+  /* Eligibility */
+  #eligibility .eligibility-card {
+    margin-left: 12px !important;
+    margin-right: 12px !important;
+    width: calc(100% - 24px) !important;
+  }
+}
