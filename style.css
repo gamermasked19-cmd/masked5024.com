@@ -1270,3 +1270,38 @@ body.weekly-background main > *{
   body.home-background main, body.casino-background main, body.competition-background main, body.leaderboard-background main, body.points-background main, body.weekly-background main{background:transparent !important;}
   body.home-background main::before, body.casino-background main::before, body.competition-background main::before, body.leaderboard-background main::before, body.points-background main::before, body.weekly-background main::before, body.home-background main::after, body.casino-background main::after, body.competition-background main::after, body.leaderboard-background main::after, body.points-background main::after, body.weekly-background main::after{display:none !important;}
 }
+
+
+/* MASKED_5024 MOBILE MENU STACKING FIX */
+@media (max-width: 768px) {
+  header,
+  .header,
+  nav,
+  .navbar,
+  .nav-container,
+  .mobile-nav,
+  .mobile-header {
+    position: relative !important;
+    z-index: 99999 !important;
+  }
+
+  .menu-button,
+  .hamburger,
+  .menu-toggle,
+  .mobile-menu-toggle,
+  .mobile-menu,
+  .nav-menu {
+    position: relative !important;
+    z-index: 100000 !important;
+  }
+
+  main,
+  .main,
+  .hero,
+  .hero-section,
+  .hero-image,
+  .page-content,
+  .content {
+    z-index: 1 !important;
+  }
+}
