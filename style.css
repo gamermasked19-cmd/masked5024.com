@@ -1077,3 +1077,20 @@ body.competition-background footer{background:#020306;}
   body.competition-background .prize{margin-left:12px;margin-right:12px;}
   body.competition-background .dates{margin-left:12px;margin-right:12px;}
 }
+
+
+/* LEADERBOARD BACKGROUND TEST */
+body.leaderboard-background{background:#020306;}
+body.leaderboard-background main{position:relative;isolation:isolate;min-height:calc(100vh - 90px);overflow:hidden;}
+body.leaderboard-background main::before{content:"";position:absolute;inset:0;z-index:-2;background:#020306 url("leaderboard-background.png") center top / cover no-repeat;}
+body.leaderboard-background main::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,.30) 0%,rgba(2,3,6,.48) 50%,rgba(2,3,6,.82) 100%);}
+body.leaderboard-background .nav{background:rgba(2,3,6,.90);}
+body.leaderboard-background .leaderboard-section{position:relative;z-index:1;}
+body.leaderboard-background .leaderboard-card{background:linear-gradient(145deg,rgba(3,5,9,.78),rgba(4,4,9,.92));backdrop-filter:blur(4px);box-shadow:0 18px 60px rgba(0,0,0,.42),0 0 34px rgba(130,45,255,.10);}
+body.leaderboard-background footer{background:#020306;}
+@media(max-width:800px){
+  body.leaderboard-background main{min-height:calc(100vh - 72px);}
+  body.leaderboard-background main::before{background-position:center top;background-size:auto 100%;}
+  body.leaderboard-background main::after{background:linear-gradient(180deg,rgba(2,3,6,.40) 0%,rgba(2,3,6,.60) 52%,rgba(2,3,6,.86) 100%);}
+  body.leaderboard-background .leaderboard-card{margin-left:12px;margin-right:12px;}
+}
