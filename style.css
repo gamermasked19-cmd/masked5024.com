@@ -1043,18 +1043,18 @@ body.home-background footer{background:#020306}
 
 /* CASINOS BACKGROUND TEST */
 body.casino-background{background:#020306;}
-body.casino-background main{position:relative;isolation:isolate;min-height:calc(100vh - 90px);overflow:hidden;}
+body.casino-background main{position:relative;isolation:isolate;min-height:calc(100vh - 90px);overflow:hidden;display:flex;align-items:center;justify-content:center;}
 body.casino-background main::before{content:"";position:absolute;inset:0;z-index:-2;background:#020306 url("casinos-background-v2.png") center center / cover no-repeat;}
 body.casino-background main::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,.28) 0%,rgba(2,3,6,.42) 48%,rgba(2,3,6,.72) 100%);}
 body.casino-background .nav{background:rgba(2,3,6,.88);}
-body.casino-background .join-now{background:transparent;}
+body.casino-background .join-now{background:transparent;width:100%;max-width:900px;margin:0 auto;padding:0 20px;box-sizing:border-box;}
 body.casino-background .join-content{background:linear-gradient(145deg,rgba(3,5,9,.74),rgba(5,8,14,.9));backdrop-filter:blur(3px);border-color:rgba(35,135,255,.34);box-shadow:0 18px 60px rgba(0,0,0,.38);}
 body.casino-background footer{background:#020306;}
 @media(max-width:800px){
-  body.casino-background main{min-height:calc(100vh - 72px);}
+  body.casino-background main{min-height:calc(100vh - 72px);display:flex;align-items:center;justify-content:center;}
   body.casino-background main::before{background-position:center top;background-size:auto 100%;}
   body.casino-background main::after{background:linear-gradient(180deg,rgba(2,3,6,.38) 0%,rgba(2,3,6,.55) 52%,rgba(2,3,6,.8) 100%);}
-  body.casino-background .join-content{margin-left:12px;margin-right:12px;}
+  body.casino-background .join-content{margin-left:0;margin-right:0;}
 }
 
 
