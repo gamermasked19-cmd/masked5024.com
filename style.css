@@ -1026,3 +1026,24 @@
 @media(max-width:1050px){.hero-copy .home-social-links{grid-template-columns:1fr;max-width:430px}}
 @media(max-width:800px){.nav nav{display:none}.nav nav.mobile-open{display:flex;position:absolute;top:100%;left:0;right:0;background:rgba(3,5,8,.98);padding:15px 5%;flex-direction:column;gap:14px;border-bottom:1px solid rgba(35,121,255,.22)}.nav .mobile-menu-toggle{display:block;background:none;border:0;color:#fff;font-size:22px}.hero{grid-template-columns:1fr}.hero-art{order:-1}.hero-copy .home-social-links{max-width:none}}
 @media(min-width:801px){.nav .mobile-menu-toggle{display:none}}
+
+
+/* HOME BACKGROUND TEST */
+body.home-background{
+  background:#020306 url("home-background.png") center top / cover fixed no-repeat;
+  position:relative;
+}
+body.home-background::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:linear-gradient(180deg,rgba(2,3,6,.42) 0%,rgba(2,3,6,.62) 45%,rgba(2,3,6,.88) 100%);
+}
+body.home-background > *{position:relative;z-index:1}
+body.home-background .nav{background:rgba(2,3,6,.78)}
+body.home-background .hero{background:linear-gradient(90deg,rgba(2,3,6,.28),rgba(2,3,6,.08),rgba(2,3,6,.28));}
+body.home-background .join-content{background:linear-gradient(145deg,rgba(3,5,9,.78),rgba(5,8,14,.92));backdrop-filter:blur(3px)}
+body.home-background footer{background:rgba(2,3,6,.9)}
+@media(max-width:800px){body.home-background{background-attachment:scroll;background-position:center top}}
