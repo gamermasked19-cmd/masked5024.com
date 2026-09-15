@@ -1134,3 +1134,67 @@ body.weekly-background footer{background:#020306;}
  body.weekly-background .weekly-section{padding-top:75px;}
  body.weekly-background .weekly-card{margin-left:12px;margin-right:12px;}
 }
+
+/* MOBILE BACKGROUND FIX - keep the cinematic backgrounds visible on every page */
+body.home-background main,
+body.casino-background main,
+body.competition-background main,
+body.leaderboard-background main,
+body.points-background main,
+body.weekly-background main{
+  position:relative;
+  isolation:isolate;
+  background-repeat:no-repeat;
+  background-position:center top;
+  background-size:cover;
+}
+body.home-background main::before,
+body.casino-background main::before,
+body.competition-background main::before,
+body.leaderboard-background main::before,
+body.points-background main::before,
+body.weekly-background main::before{
+  z-index:0;
+  background-position:center top;
+  background-size:cover !important;
+  background-repeat:no-repeat;
+}
+body.home-background main::after,
+body.casino-background main::after,
+body.competition-background main::after,
+body.leaderboard-background main::after,
+body.points-background main::after,
+body.weekly-background main::after{
+  z-index:0;
+}
+body.home-background main > *,
+body.casino-background main > *,
+body.competition-background main > *,
+body.leaderboard-background main > *,
+body.points-background main > *,
+body.weekly-background main > *{
+  position:relative;
+  z-index:1;
+}
+@media(max-width:800px){
+  body.home-background main,
+  body.casino-background main,
+  body.competition-background main,
+  body.leaderboard-background main,
+  body.points-background main,
+  body.weekly-background main{
+    min-height:calc(100vh - 72px);
+    background-size:cover;
+    background-position:center top;
+    overflow:hidden;
+  }
+  body.home-background main::before,
+  body.casino-background main::before,
+  body.competition-background main::before,
+  body.leaderboard-background main::before,
+  body.points-background main::before,
+  body.weekly-background main::before{
+    background-size:cover !important;
+    background-position:center top !important;
+  }
+}
