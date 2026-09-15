@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MASKED_5024 official hub — live streams, competitions, community and partner links.">
+  <title>Eligibility | MASKED_5024</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=20260910-mobile2">
+</head>
+<body>
+<div class="glow glow-one"></div>
+  <div class="glow glow-two"></div>
+  <header class="nav">
+    <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    <a class="brand" href="index.html">MASKED<span>_5024</span></a>
+    <nav>
+      <a href="competition.html">COMPETITION</a>
+      <a href="leaderboard.html">🏆 LEADERBOARD</a>
+      <a href="points.html">🎯 POINTS SYSTEM</a>
+      <a href="weekly.html">🔥 WEEKLY CHALLENGES</a>
+      <a href="eligibility.html">✅ ELIGIBILITY</a>
+      <a href="index.html#community">COMMUNITY</a>
+    </nav>
+  </header>
+<main id="top">
+<section id="eligibility" class="section eligibility-section">
+      <div class="section-heading">
+        <div class="eyebrow">BEFORE YOU ENTER</div>
+        <h2>✅ COMPETITION <span>ELIGIBILITY</span></h2>
+        <p>All requirements below must be completed to be eligible for the MASKED GAMES competition.</p>
+      </div>
+
+      <div class="eligibility-card">
+        <div class="eligibility-item">
+          <div class="eligibility-number">01</div>
+          <div>
+            <h3>FOLLOW MASKED</h3>
+            <p>You must be following <strong>MASKED_5024</strong> on both Kick and Instagram.</p>
+          </div>
+        </div>
+
+        <div class="eligibility-item">
+          <div class="eligibility-number">02</div>
+          <div>
+            <h3>DISCORD VERIFIED</h3>
+            <p>You must be verified on the official MASKED Discord.</p>
+          </div>
+        </div>
+
+        <div class="eligibility-item">
+          <div class="eligibility-number">03</div>
+          <div>
+            <h3>KING BILLY SIGN-UP</h3>
+            <p>You must sign up through <strong>Masked's King Billy Casino link</strong> and make the required initial <strong>$50 deposit</strong>.</p>
+          </div>
+        </div>
+
+        <div class="eligibility-note">
+          <strong>⚠ ELIGIBILITY CHECK</strong>
+          <span>All criteria must be completed to qualify. Masked may verify eligibility, points and submissions before awarding competition prizes.</span>
+        </div>
+      </div>
+    </section>
+</main>
+<footer>
+    <div class="footer-brand">MASKED<span>_5024</span></div>
+    <p>© 2026 MASKED_5024. All rights reserved.</p>
+    <p class="fine">18+ only. Gambling can be harmful. Please gamble responsibly. Partner availability, promotions and terms may vary. Affiliate disclosure: links may generate commission for MASKED_5024.</p>
+  </footer>
+
+<script>
+(function(){
+  const button = document.querySelector('.mobile-menu-toggle');
+  const nav = document.querySelector('.nav nav');
+  if (!button || !nav) return;
+  button.addEventListener('click', function(){
+    const open = nav.classList.toggle('mobile-open');
+    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      nav.classList.remove('mobile-open');
+      button.setAttribute('aria-expanded', 'false');
+    });
+  });
+})();
+</script>
+</body></html>
