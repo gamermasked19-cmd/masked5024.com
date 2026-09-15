@@ -1254,3 +1254,19 @@ body.weekly-background main > *{
   body.home-background main::after, body.casino-background main::after, body.competition-background main::after, body.leaderboard-background main::after, body.points-background main::after, body.weekly-background main::after{display:none !important;}
   body.home-background main, body.casino-background main, body.competition-background main, body.leaderboard-background main, body.points-background main, body.weekly-background main{background:transparent !important;}
 }
+
+/* TRUE MOBILE BACKGROUND FIX - desktop untouched */
+.mobile-page-background{display:none;}
+@media (max-width:800px){
+  body{position:relative;}
+  .mobile-page-background{display:block;position:fixed;inset:0;z-index:0;pointer-events:none;background-repeat:no-repeat;background-position:center center;background-size:cover;}
+  body.home-background .mobile-page-background{background-image:url("home-background.png");}
+  body.casino-background .mobile-page-background{background-image:url("casinos-background-v2.png");}
+  body.competition-background .mobile-page-background{background-image:url("competition-background.png");}
+  body.leaderboard-background .mobile-page-background{background-image:url("leaderboard-background.png");}
+  body.points-background .mobile-page-background{background-image:url("points-background.png");}
+  body.weekly-background .mobile-page-background{background-image:url("weekly-background.png");}
+  .nav, main, footer{position:relative;z-index:1;}
+  body.home-background main, body.casino-background main, body.competition-background main, body.leaderboard-background main, body.points-background main, body.weekly-background main{background:transparent !important;}
+  body.home-background main::before, body.casino-background main::before, body.competition-background main::before, body.leaderboard-background main::before, body.points-background main::before, body.weekly-background main::before, body.home-background main::after, body.casino-background main::after, body.competition-background main::after, body.leaderboard-background main::after, body.points-background main::after, body.weekly-background main::after{display:none !important;}
+}
