@@ -1044,7 +1044,7 @@ body.home-background footer{background:#020306}
 /* CASINOS BACKGROUND TEST */
 body.casino-background{background:#020306;}
 body.casino-background main{position:relative;isolation:isolate;min-height:calc(100vh - 90px);overflow:hidden;}
-body.casino-background main::before{content:"";position:absolute;inset:0;z-index:-2;background:#020306 url("casinos-background.png") center center / cover no-repeat;}
+body.casino-background main::before{content:"";position:absolute;inset:0;z-index:-2;background:#020306 url("casinos-background-v2.png") center center / cover no-repeat;}
 body.casino-background main::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,.28) 0%,rgba(2,3,6,.42) 48%,rgba(2,3,6,.72) 100%);}
 body.casino-background .nav{background:rgba(2,3,6,.88);}
 body.casino-background .join-now{background:transparent;}
