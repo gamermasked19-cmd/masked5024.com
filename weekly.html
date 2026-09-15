@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MASKED_5024 official hub — live streams, competitions, community and partner links.">
-  <title>Weekly Challenges | MASKED_5024</title>
+  <meta name="description" content="MASKED_5024 — WEEKLY CHALLENGES.">
+  <title>MASKED_5024 | WEEKLY CHALLENGES</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260910-mobile2">
+  <link rel="stylesheet" href="style.css?v=20260915-multipage">
 </head>
 <body>
-<div class="glow glow-one"></div>
+  <div class="glow glow-one"></div>
   <div class="glow glow-two"></div>
+  
   <header class="nav">
     <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <a class="brand" href="index.html">MASKED<span>_5024</span></a>
-    <nav>
-      <a href="competition.html">COMPETITION</a>
-      <a href="leaderboard.html">🏆 LEADERBOARD</a>
-      <a href="points.html">🎯 POINTS SYSTEM</a>
-      <a href="weekly.html">🔥 WEEKLY CHALLENGES</a>
-      <a href="eligibility.html">✅ ELIGIBILITY</a>
-      <a href="index.html#community">COMMUNITY</a>
-    </nav>
+    <nav><a href="index.html">HOME</a><a href="casinos.html">CASINOS</a><a href="competition.html">COMPETITION</a><a href="leaderboard.html">🏆 LEADERBOARD</a><a href="points.html">🎯 POINTS SYSTEM</a><a href="weekly.html" class="active">🔥 WEEKLY CHALLENGES</a><a href="eligibility.html">✅ ELIGIBILITY</a><a href="community.html">COMMUNITY</a></nav>
   </header>
-<main id="top">
-<section id="weekly" class="section weekly-section">
+
+  <main>
+    <div class="page-title">
+      <div class="eyebrow">MASKED_5024</div>
+      <h1>WEEKLY CHALLENGES</h1>
+    </div>
+    <section id="weekly" class="section weekly-section">
       <div class="section-heading">
         <div class="eyebrow">COMPETE EVERY WEEK</div>
         <h2>🔥 WEEKLY <span>CHALLENGES</span></h2>
@@ -53,28 +52,33 @@
         </div>
       </div>
     </section>
-</main>
+  </main>
+  
 <footer>
-    <div class="footer-brand">MASKED<span>_5024</span></div>
-    <p>© 2026 MASKED_5024. All rights reserved.</p>
-    <p class="fine">18+ only. Gambling can be harmful. Please gamble responsibly. Partner availability, promotions and terms may vary. Affiliate disclosure: links may generate commission for MASKED_5024.</p>
-  </footer>
+  <div class="footer-brand">MASKED<span>_5024</span></div>
+  <p>© 2026 MASKED_5024. All rights reserved.</p>
+  <p class="fine">18+ only. Gambling can be harmful. Please gamble responsibly. Partner availability, promotions and terms may vary. Affiliate disclosure: links may generate commission for MASKED_5024.</p>
+</footer>
 
+  
+  
 <script>
 (function(){
-  const button = document.querySelector('.mobile-menu-toggle');
-  const nav = document.querySelector('.nav nav');
-  if (!button || !nav) return;
-  button.addEventListener('click', function(){
-    const open = nav.classList.toggle('mobile-open');
-    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+  const button=document.querySelector('.mobile-menu-toggle');
+  const nav=document.querySelector('.nav nav');
+  if(!button||!nav)return;
+  button.addEventListener('click',function(){
+    const open=nav.classList.toggle('mobile-open');
+    button.setAttribute('aria-expanded',open?'true':'false');
   });
   nav.querySelectorAll('a').forEach(function(link){
-    link.addEventListener('click', function(){
+    link.addEventListener('click',function(){
       nav.classList.remove('mobile-open');
-      button.setAttribute('aria-expanded', 'false');
+      button.setAttribute('aria-expanded','false');
     });
   });
 })();
 </script>
-</body></html>
+
+</body>
+</html>

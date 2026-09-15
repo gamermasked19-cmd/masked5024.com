@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="MASKED_5024 official hub — live streams, competitions, community and partner links.">
-  <title>Leaderboard | MASKED_5024</title>
+  <meta name="description" content="MASKED_5024 — MASKED LEADERBOARD.">
+  <title>MASKED_5024 | MASKED LEADERBOARD</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=20260910-mobile2">
+  <link rel="stylesheet" href="style.css?v=20260915-multipage">
 </head>
 <body>
-<div class="glow glow-one"></div>
+  <div class="glow glow-one"></div>
   <div class="glow glow-two"></div>
+  
   <header class="nav">
     <button class="mobile-menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
     <a class="brand" href="index.html">MASKED<span>_5024</span></a>
-    <nav>
-      <a href="competition.html">COMPETITION</a>
-      <a href="leaderboard.html">🏆 LEADERBOARD</a>
-      <a href="points.html">🎯 POINTS SYSTEM</a>
-      <a href="weekly.html">🔥 WEEKLY CHALLENGES</a>
-      <a href="eligibility.html">✅ ELIGIBILITY</a>
-      <a href="index.html#community">COMMUNITY</a>
-    </nav>
+    <nav><a href="index.html">HOME</a><a href="casinos.html">CASINOS</a><a href="competition.html">COMPETITION</a><a href="leaderboard.html" class="active">🏆 LEADERBOARD</a><a href="points.html">🎯 POINTS SYSTEM</a><a href="weekly.html">🔥 WEEKLY CHALLENGES</a><a href="eligibility.html">✅ ELIGIBILITY</a><a href="community.html">COMMUNITY</a></nav>
   </header>
-<main id="top">
-<section id="leaderboard" class="section leaderboard-section">
+
+  <main>
+    <div class="page-title">
+      <div class="eyebrow">MASKED_5024</div>
+      <h1>MASKED LEADERBOARD</h1>
+    </div>
+    <section id="leaderboard" class="section leaderboard-section">
       <div class="section-heading">
         <div class="eyebrow">LIVE COMPETITION RANKINGS</div>
         <h2>MASKED <span>LEADERBOARD</span></h2>
@@ -48,120 +47,70 @@
         </div>
       </div>
     </section>
-</main>
+  </main>
+  
 <footer>
-    <div class="footer-brand">MASKED<span>_5024</span></div>
-    <p>© 2026 MASKED_5024. All rights reserved.</p>
-    <p class="fine">18+ only. Gambling can be harmful. Please gamble responsibly. Partner availability, promotions and terms may vary. Affiliate disclosure: links may generate commission for MASKED_5024.</p>
-  </footer>
+  <div class="footer-brand">MASKED<span>_5024</span></div>
+  <p>© 2026 MASKED_5024. All rights reserved.</p>
+  <p class="fine">18+ only. Gambling can be harmful. Please gamble responsibly. Partner availability, promotions and terms may vary. Affiliate disclosure: links may generate commission for MASKED_5024.</p>
+</footer>
 
+  
 <script>
-(function () {
-  // Google Sheet used for the live competition leaderboard.
-  const SHEET_URL = "https://docs.google.com/spreadsheets/d/18md9nIesSL6ybUr6jGpo5O-vDA6gLYuNHIAp2okEC60/export?format=csv";
-  const rowsEl = document.getElementById("siteLeaderboardRows");
-  const statusEl = document.getElementById("leaderboardStatus");
-
-  function parseCSVLine(line) {
-    const result = [];
-    let current = "";
-    let quoted = false;
-
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      const next = line[i + 1];
-
-      if (char === '"' && quoted && next === '"') {
-        current += '"';
-        i++;
-      } else if (char === '"') {
-        quoted = !quoted;
-      } else if (char === "," && !quoted) {
-        result.push(current);
-        current = "";
-      } else {
-        current += char;
-      }
-    }
-    result.push(current);
-    return result;
-  }
-
-  async function loadLeaderboard() {
-    try {
-      const response = await fetch(SHEET_URL + "&t=" + Date.now(), {
-        cache: "no-store"
-      });
-
-      if (!response.ok) throw new Error("Leaderboard request failed");
-
-      const csv = await response.text();
-
-      const players = csv
-        .split(/\r?\n/)
-        .map(parseCSVLine)
-        .map(cols => ({
-          name: (cols[0] || "").trim(),
-          score: Number(String(cols[1] || "0").replace(/[^0-9.-]/g, "")) || 0
-        }))
-        .filter(player => player.name !== "")
-        .sort((a, b) => b.score - a.score)
-        .map((player, index) => ({ ...player, rank: index + 1 }));
-
-      if (!players.length) throw new Error("No players found");
-
-      rowsEl.innerHTML = players.map(player => `
-        <div class="site-leaderboard-row rank-${player.rank}">
-          <div class="site-rank">${player.rank}</div>
-          <div class="site-name">${escapeHTML(player.name)}</div>
-          <div class="site-score">${player.score.toLocaleString()}</div>
-        </div>
-      `).join("");
-
-      statusEl.textContent = "LIVE • UPDATED " + new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit"
-      });
-    } catch (error) {
-      console.error(error);
-      rowsEl.innerHTML = `
-        <div class="leaderboard-error">
-          LEADERBOARD TEMPORARILY UNAVAILABLE
-          <small>Make sure the Google Sheet is publicly accessible.</small>
-        </div>
-      `;
-      statusEl.textContent = "Unable to update";
-    }
-  }
-
-  function escapeHTML(value) {
-    return value.replace(/[&<>"']/g, char => ({
-      "&": "&amp;",
-      "<": "&lt;",
-      ">": "&gt;",
-      '"': "&quot;",
-      "'": "&#039;"
-    }[char]));
-  }
-
-  loadLeaderboard();
-  setInterval(loadLeaderboard, 60000);
-})();
-</script><script>
 (function(){
-  const button = document.querySelector('.mobile-menu-toggle');
-  const nav = document.querySelector('.nav nav');
-  if (!button || !nav) return;
-  button.addEventListener('click', function(){
-    const open = nav.classList.toggle('mobile-open');
-    button.setAttribute('aria-expanded', open ? 'true' : 'false');
+  const SHEET_URL="https://docs.google.com/spreadsheets/d/18md9nIesSL6ybUr6jGpo5O-vDA6gLYuNHIAp2okEC60/export?format=csv";
+  const rowsEl=document.getElementById("siteLeaderboardRows");
+  const statusEl=document.getElementById("leaderboardStatus");
+  function parseCSVLine(line){
+    const result=[];let current="";let quoted=false;
+    for(let i=0;i<line.length;i++){
+      const c=line[i],n=line[i+1];
+      if(c==='"'&&quoted&&n==='"'){current+='"';i++;}
+      else if(c==='"') quoted=!quoted;
+      else if(c===","&&!quoted){result.push(current);current="";}
+      else current+=c;
+    }
+    result.push(current);return result;
+  }
+  function esc(v){return v.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+  async function load(){
+    try{
+      const r=await fetch(SHEET_URL+"&t="+Date.now(),{cache:"no-store"});
+      if(!r.ok)throw Error();
+      const csv=await r.text();
+      const players=csv.split(/\r?\n/).map(parseCSVLine).map(c=>({
+        name:(c[0]||"").trim(),
+        score:Number(String(c[1]||"0").replace(/[^0-9.-]/g,""))||0
+      })).filter(p=>p.name).sort((a,b)=>b.score-a.score).map((p,i)=>({...p,rank:i+1}));
+      if(!players.length)throw Error();
+      rowsEl.innerHTML=players.map(p=>`<div class="site-leaderboard-row rank-${p.rank}"><div class="site-rank">${p.rank}</div><div class="site-name">${esc(p.name)}</div><div class="site-score">${p.score.toLocaleString()}</div></div>`).join("");
+      statusEl.textContent="LIVE • UPDATED "+new Date().toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});
+    }catch(e){
+      rowsEl.innerHTML='<div class="leaderboard-error">LEADERBOARD TEMPORARILY UNAVAILABLE<small>Make sure the Google Sheet is publicly accessible.</small></div>';
+      statusEl.textContent="Unable to update";
+    }
+  }
+  load();setInterval(load,60000);
+})();
+</script>
+  
+<script>
+(function(){
+  const button=document.querySelector('.mobile-menu-toggle');
+  const nav=document.querySelector('.nav nav');
+  if(!button||!nav)return;
+  button.addEventListener('click',function(){
+    const open=nav.classList.toggle('mobile-open');
+    button.setAttribute('aria-expanded',open?'true':'false');
   });
   nav.querySelectorAll('a').forEach(function(link){
-    link.addEventListener('click', function(){
+    link.addEventListener('click',function(){
       nav.classList.remove('mobile-open');
-      button.setAttribute('aria-expanded', 'false');
+      button.setAttribute('aria-expanded','false');
     });
   });
 })();
 </script>
-</body></html>
+
+</body>
+</html>
