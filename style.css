@@ -1028,22 +1028,14 @@
 @media(min-width:801px){.nav .mobile-menu-toggle{display:none}}
 
 
-/* HOME BACKGROUND TEST */
-body.home-background{
-  background:#020306 url("home-background.png") center top / cover fixed no-repeat;
-  position:relative;
-}
-body.home-background::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  background:linear-gradient(180deg,rgba(2,3,6,.42) 0%,rgba(2,3,6,.62) 45%,rgba(2,3,6,.88) 100%);
-}
-body.home-background > *{position:relative;z-index:1}
-body.home-background .nav{background:rgba(2,3,6,.78)}
-body.home-background .hero{background:linear-gradient(90deg,rgba(2,3,6,.28),rgba(2,3,6,.08),rgba(2,3,6,.28));}
-body.home-background .join-content{background:linear-gradient(145deg,rgba(3,5,9,.78),rgba(5,8,14,.92));backdrop-filter:blur(3px)}
-body.home-background footer{background:rgba(2,3,6,.9)}
-@media(max-width:800px){body.home-background{background-attachment:scroll;background-position:center top}}
+/* HOME BACKGROUND TEST V2 */
+body.home-background{background:#020306;}
+body.home-background main{position:relative;isolation:isolate;}
+body.home-background main::before{content:"";position:absolute;inset:0;z-index:-2;background:#020306 url("home-background.png") center top / cover no-repeat;}
+body.home-background main::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(2,3,6,.26) 0%,rgba(2,3,6,.46) 42%,rgba(2,3,6,.74) 100%);}
+body.home-background .nav{background:rgba(2,3,6,.84)}
+body.home-background .hero{background:linear-gradient(90deg,rgba(2,3,6,.16),rgba(2,3,6,.03),rgba(2,3,6,.16));}
+body.home-background .hero-art .art-frame{width:min(500px,92%);box-shadow:0 0 60px rgba(0,90,255,.15),inset 0 0 40px rgba(0,0,0,.35)}
+body.home-background .join-content{background:linear-gradient(145deg,rgba(3,5,9,.72),rgba(5,8,14,.88));backdrop-filter:blur(3px)}
+body.home-background footer{background:#020306}
+@media(max-width:800px){body.home-background main::before{background-position:center top;background-size:auto 100%;}.hero-art .art-frame{width:min(460px,92%)}}
