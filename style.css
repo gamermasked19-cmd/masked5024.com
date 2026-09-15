@@ -1235,3 +1235,22 @@ body.weekly-background main > *{
     z-index:0 !important;
   }
 }
+
+/* REAL MOBILE BACKGROUND FALLBACK - mobile only */
+@media (max-width:800px){
+  body.home-background, body.casino-background, body.competition-background, body.leaderboard-background, body.points-background, body.weekly-background{
+    background-repeat:no-repeat !important;
+    background-position:center top !important;
+    background-size:cover !important;
+    background-attachment:fixed !important;
+  }
+  body.home-background{background-image:url("home-background.png") !important;}
+  body.casino-background{background-image:url("casinos-background-v2.png") !important;}
+  body.competition-background{background-image:url("competition-background.png") !important;}
+  body.leaderboard-background{background-image:url("leaderboard-background.png") !important;}
+  body.points-background{background-image:url("points-background.png") !important;}
+  body.weekly-background{background-image:url("weekly-background.png") !important;}
+  body.home-background main::before, body.casino-background main::before, body.competition-background main::before, body.leaderboard-background main::before, body.points-background main::before, body.weekly-background main::before{display:none !important;}
+  body.home-background main::after, body.casino-background main::after, body.competition-background main::after, body.leaderboard-background main::after, body.points-background main::after, body.weekly-background main::after{display:none !important;}
+  body.home-background main, body.casino-background main, body.competition-background main, body.leaderboard-background main, body.points-background main, body.weekly-background main{background:transparent !important;}
+}
