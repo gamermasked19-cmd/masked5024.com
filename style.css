@@ -1112,3 +1112,7 @@ body.points-background footer{background:#020306;}
  body.points-background main::after{background:linear-gradient(180deg,rgba(2,3,6,.40) 0%,rgba(2,3,6,.60) 52%,rgba(2,3,6,.86) 100%);}
  body.points-background .points-card{margin-left:12px;margin-right:12px;}
 }
+
+/* POINTS SYSTEM FINAL POSITION TWEAK */
+body.points-background .points-section{padding-top:155px;}
+@media(max-width:800px){body.points-background .points-section{padding-top:95px;}}
