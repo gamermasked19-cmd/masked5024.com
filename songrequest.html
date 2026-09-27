@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MASKED_5024 — Song Request</title><link rel="stylesheet" href="style.css"><style>
+.song-page .section{max-width:1200px}.song-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:start}
+.song-player-card,.song-queue-card,.song-admin-card{border:1px solid rgba(35,135,255,.4);border-radius:18px;background:rgba(4,10,20,.88);box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+.song-player-wrap{aspect-ratio:16/9;background:#000;position:relative}#ytplayer{width:100%;height:100%}.song-now{padding:18px 20px;border-top:1px solid rgba(255,255,255,.08)}
+.song-now-label,.song-queue-title{font:800 11px Orbitron,sans-serif;letter-spacing:3px;color:#3b98ff}.song-now-title{font:900 22px Orbitron,sans-serif;margin-top:8px}.song-now-meta{color:#93a5bf;font-size:13px;margin-top:6px}
+.song-empty{padding:60px 20px;text-align:center;color:#71829b}.song-queue-card{padding:20px}.song-queue-title{margin-bottom:14px}.song-queue-list{display:flex;flex-direction:column;gap:9px}
+.song-item{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:rgba(0,0,0,.22)}
+.song-rank{width:28px;text-align:center;color:#4b9dff;font:800 13px Orbitron,sans-serif}.song-thumb{width:72px;height:42px;object-fit:cover;border-radius:6px;background:#101722}.song-info{min-width:0}
+.song-title{font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.song-requester{font-size:12px;color:#8294ad;margin-top:4px}
+.song-request-note{margin-top:25px;padding:15px;border:1px solid rgba(255,255,255,.08);border-radius:10px;color:#8fa1bb;text-align:center}.song-request-note code{color:#fff;background:#0c1626;padding:4px 7px;border-radius:5px}
+.song-status{font:800 11px Orbitron,sans-serif;letter-spacing:2px;color:#65a9ff;margin-top:10px}.song-admin-card{max-width:900px;margin:auto;padding:24px}
+.song-admin-card label{display:block;font:800 11px Orbitron,sans-serif;letter-spacing:2px;color:#9fb0c8;margin-bottom:8px}
+.song-admin-card input{width:100%;padding:14px;border-radius:8px;border:1px solid #28496f;background:#050b14;color:#fff;margin-bottom:14px}
+.song-admin-actions{display:flex;gap:10px;flex-wrap:wrap}.song-admin-message{margin-top:14px;color:#91a7c5;min-height:20px}.song-admin-list{margin-top:24px;display:flex;flex-direction:column;gap:9px}
+.song-admin-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:9px}.song-admin-row button{padding:9px 12px;border:1px solid #345b86;background:#0a1728;color:#fff;border-radius:7px;cursor:pointer}
+@media(max-width:850px){.song-layout{grid-template-columns:1fr}.song-title{white-space:normal}}
+</style></head>
+<body class="song-page">
+<header class="site-header"><div class="nav"><a class="brand" href="index.html">MASKED<span>_5024</span></a>
+<button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="Open menu">☰</button>
+<nav><a href="index.html">🏠 HOME</a><a href="casinos.html">🎰 CASINOS</a><a href="slotcall.html">🎰 SLOT CALL</a><a href="songrequest.html" class="active">🎵 SONG REQUEST</a><a href="leaderboard.html">🏆 LEADERBOARD</a></nav></div></header>
+<main><section class="section">
+<div class="section-heading"><div class="eyebrow">LIVE FROM KICK CHAT</div><h2>🎵 SONG <span>REQUEST</span></h2><p>Type <strong>!song Artist - Song</strong> in Kick chat. The queue plays in order.</p></div>
+<div class="song-layout">
+<div class="song-player-card"><div class="song-player-wrap"><div id="ytplayer"></div><div id="playerEmpty" class="song-empty">WAITING FOR A SONG REQUEST</div></div>
+<div class="song-now"><div class="song-now-label">NOW PLAYING</div><div id="nowTitle" class="song-now-title">NO SONG PLAYING</div><div id="nowMeta" class="song-now-meta">Waiting for the first song request.</div><div id="status" class="song-status">WAITING</div></div></div>
+<div class="song-queue-card"><div class="song-queue-title">UP NEXT</div><div id="queueList" class="song-queue-list"><div class="song-empty" style="padding:20px">No songs in the queue.</div></div>
+<div class="song-request-note">REQUEST IN KICK<br><code>!song The Weeknd - Blinding Lights</code></div></div>
+</div></section></main>
+<footer><div class="footer-brand">MASKED<span>_5024</span></div><p>© 2026 MASKED_5024. All rights reserved.</p></footer>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+const API_BASE="https://masked-slot-call.gamermasked19.workers.dev";
+let player=null,current=null,advancing=false;
+const $=id=>document.getElementById(id);
+function mobileMenu(){const b=document.querySelector('.mobile-menu-toggle'),n=document.querySelector('.nav nav');if(b&&n)b.onclick=()=>{const o=n.classList.toggle('mobile-open');b.setAttribute('aria-expanded',o?'true':'false')}}
+mobileMenu();
+async function getQueue(){const r=await fetch(API_BASE+'/api/songs',{cache:'no-store'});if(!r.ok)throw Error('queue');return (await r.json()).queue||[]}
+function render(q){const list=$('queueList');list.innerHTML='';if(!q.length){list.innerHTML='<div class="song-empty" style="padding:20px">No songs in the queue.</div>';return}q.forEach((x,i)=>{const d=document.createElement('div');d.className='song-item';d.innerHTML='<div class="song-rank">'+(i+1)+'</div><img class="song-thumb" src="'+(x.thumbnail||'')+'" alt=""><div class="song-info"><div class="song-title"></div><div class="song-requester"></div></div>';d.querySelector('.song-title').textContent=x.title;d.querySelector('.song-requester').textContent='Requested by '+x.requester;list.appendChild(d)})}
+function setNow(x){current=x||null;$('playerEmpty').style.display=x?'none':'block';$('nowTitle').textContent=x?x.title:'NO SONG PLAYING';$('nowMeta').textContent=x?('Requested by '+x.requester):'Waiting for the first song request.';$('status').textContent=x?'PLAYING':'WAITING'}
+async function sync(){try{const q=await getQueue();render(q);if(!current&&q.length){setNow(q[0]);if(player&&player.loadVideoById)player.loadVideoById(q[0].videoId)}else if(current&&!q.some(x=>x.id===current.id)&&q.length){setNow(q[0]);player&&player.loadVideoById(q[0].videoId)}else if(!q.length){setNow(null);player&&player.stopVideo&&player.stopVideo()}}catch(e){$('status').textContent='QUEUE ERROR'}}
+async function advance(){if(advancing)return;advancing=true;try{const id=current?.id;await fetch(API_BASE+'/api/songs/advance'+(id?'?id='+encodeURIComponent(id):''),{method:'POST'});current=null;await sync()}finally{advancing=false}}
+function onYouTubeIframeAPIReady(){player=new YT.Player('ytplayer',{width:'100%',height:'100%',videoId:'',playerVars:{autoplay:1,controls:1,rel:0,playsinline:1},events:{onReady:()=>sync(),onStateChange:e=>{if(e.data===YT.PlayerState.ENDED)advance()}}})}
+sync();setInterval(sync,5000);
+</script></body></html>

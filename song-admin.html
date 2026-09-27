@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MASKED_5024 — Song Admin</title><link rel="stylesheet" href="style.css"><style>
+.song-page .section{max-width:1200px}.song-layout{display:grid;grid-template-columns:1.35fr .65fr;gap:24px;align-items:start}
+.song-player-card,.song-queue-card,.song-admin-card{border:1px solid rgba(35,135,255,.4);border-radius:18px;background:rgba(4,10,20,.88);box-shadow:0 18px 60px rgba(0,0,0,.35);overflow:hidden}
+.song-player-wrap{aspect-ratio:16/9;background:#000;position:relative}#ytplayer{width:100%;height:100%}.song-now{padding:18px 20px;border-top:1px solid rgba(255,255,255,.08)}
+.song-now-label,.song-queue-title{font:800 11px Orbitron,sans-serif;letter-spacing:3px;color:#3b98ff}.song-now-title{font:900 22px Orbitron,sans-serif;margin-top:8px}.song-now-meta{color:#93a5bf;font-size:13px;margin-top:6px}
+.song-empty{padding:60px 20px;text-align:center;color:#71829b}.song-queue-card{padding:20px}.song-queue-title{margin-bottom:14px}.song-queue-list{display:flex;flex-direction:column;gap:9px}
+.song-item{display:flex;gap:12px;align-items:center;padding:12px;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:rgba(0,0,0,.22)}
+.song-rank{width:28px;text-align:center;color:#4b9dff;font:800 13px Orbitron,sans-serif}.song-thumb{width:72px;height:42px;object-fit:cover;border-radius:6px;background:#101722}.song-info{min-width:0}
+.song-title{font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.song-requester{font-size:12px;color:#8294ad;margin-top:4px}
+.song-request-note{margin-top:25px;padding:15px;border:1px solid rgba(255,255,255,.08);border-radius:10px;color:#8fa1bb;text-align:center}.song-request-note code{color:#fff;background:#0c1626;padding:4px 7px;border-radius:5px}
+.song-status{font:800 11px Orbitron,sans-serif;letter-spacing:2px;color:#65a9ff;margin-top:10px}.song-admin-card{max-width:900px;margin:auto;padding:24px}
+.song-admin-card label{display:block;font:800 11px Orbitron,sans-serif;letter-spacing:2px;color:#9fb0c8;margin-bottom:8px}
+.song-admin-card input{width:100%;padding:14px;border-radius:8px;border:1px solid #28496f;background:#050b14;color:#fff;margin-bottom:14px}
+.song-admin-actions{display:flex;gap:10px;flex-wrap:wrap}.song-admin-message{margin-top:14px;color:#91a7c5;min-height:20px}.song-admin-list{margin-top:24px;display:flex;flex-direction:column;gap:9px}
+.song-admin-row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px;border:1px solid rgba(255,255,255,.08);border-radius:9px}.song-admin-row button{padding:9px 12px;border:1px solid #345b86;background:#0a1728;color:#fff;border-radius:7px;cursor:pointer}
+@media(max-width:850px){.song-layout{grid-template-columns:1fr}.song-title{white-space:normal}}
+</style></head>
+<body class="song-page"><header class="site-header"><div class="nav"><a class="brand" href="index.html">MASKED<span>_5024</span></a><nav><a href="songrequest.html">🎵 SONG REQUEST</a></nav></div></header>
+<main><section class="section"><div class="section-heading"><div class="eyebrow">PRIVATE CONTROL</div><h2>SONG <span>ADMIN</span></h2><p>Manage the live song queue.</p></div>
+<div class="song-admin-card"><label for="token">Admin token</label><input id="token" type="password" autocomplete="off" placeholder="Enter your private admin token">
+<div class="song-admin-actions"><button id="skip" class="btn primary">SKIP CURRENT</button><button id="clear" class="btn ghost">CLEAR QUEUE</button></div><div id="msg" class="song-admin-message"></div><div id="list" class="song-admin-list"></div></div></section></main>
+<script>
+const API_BASE="https://masked-slot-call.gamermasked19.workers.dev";const token=document.getElementById('token');const msg=document.getElementById('msg');
+function auth(){return {'Authorization':'Bearer '+token.value,'Content-Type':'application/json'}}
+async function load(){const r=await fetch(API_BASE+'/api/songs',{cache:'no-store'});const q=(await r.json()).queue||[];const l=document.getElementById('list');l.innerHTML='';q.forEach((x,i)=>{const d=document.createElement('div');d.className='song-admin-row';const s=document.createElement('span');s.textContent=(i+1)+'. '+x.title+' — '+x.requester;const b=document.createElement('button');b.textContent='REMOVE';b.onclick=()=>remove(x.id);d.append(s,b);l.appendChild(d)});if(!q.length)l.innerHTML='<div class="song-empty">Queue is empty.</div>'}
+async function action(path,body){const r=await fetch(API_BASE+path,{method:'POST',headers:auth(),body:body?JSON.stringify(body):undefined});if(!r.ok)throw Error('Request failed');await load()}
+async function remove(id){msg.textContent='Removing...';try{await action('/api/songs/remove',{id});msg.textContent='Removed.'}catch(e){msg.textContent='Could not remove. Check token.'}}
+document.getElementById('skip').onclick=async()=>{msg.textContent='Skipping...';try{await action('/api/songs/skip');msg.textContent='Skipped.'}catch(e){msg.textContent='Could not skip. Check token.'}};
+document.getElementById('clear').onclick=async()=>{if(!confirm('Clear the entire song queue?'))return;msg.textContent='Clearing...';try{await action('/api/songs/clear');msg.textContent='Queue cleared.'}catch(e){msg.textContent='Could not clear. Check token.'}};
+load();setInterval(load,5000);
+</script></body></html>
