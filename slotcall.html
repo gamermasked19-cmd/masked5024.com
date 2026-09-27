@@ -17,8 +17,8 @@
       <a href="slotcall.html" class="active">🎰 SLOT CALL</a>
       <a href="competition.html">⚔️ COMPETITION</a>
       <a href="leaderboard.html">🏆 LEADERBOARD</a>
-      <a href="points.html">🎯 POINTS SYSTEM</a>
-      <a href="weekly.html">🔥 WEEKLY CHALLENGES</a>
+      
+      
     </nav>
   </div>
 </header>
@@ -31,13 +31,13 @@
       <p>Type <strong>!sc your slot</strong> in Kick chat and your request will appear here.</p>
     </div>
 
-    <div class="slotcall-list" id="slotCallList" aria-live="polite">
-  <div class="slotcall-empty">
-    <div class="slotcall-status"><span></span>WAITING FOR SLOT CALLS</div>
-    <div class="slotcall-label">NO SLOT CALLS YET</div>
-    <div class="slotcall-requester">Be the first to call a slot.</div>
-  </div>
-</div>
+    <div class="slotcall-card" id="slotcallCard" aria-live="polite">
+      <div class="slotcall-status"><span></span> WAITING FOR A SLOT CALL</div>
+      <div class="slotcall-label">CURRENT SLOT CALL</div>
+      <div class="slotcall-name" id="slotName">NO SLOT CALLED</div>
+      <div class="slotcall-requester" id="slotRequester">Be the first to call a slot.</div>
+    </div>
+
     <div class="slotcall-note">
       <strong>COMMAND:</strong> <code>!sc Gates of Olympus</code>
       <span>The latest valid request becomes the current slot call.</span>
@@ -69,53 +69,31 @@
   }
 
   // Replace this with your deployed Cloudflare Worker URL.
-  const API_BASE="https://masked-slot-call.gamermasked19.workers.dev";
+  const API_BASE = 'https://YOUR-SLOT-CALL-WORKER.workers.dev';
 
   async function loadSlotCall(){
-  try{
-    const response = await fetch(API_BASE + '/api/slot-call', {
-      cache: 'no-store'
-    });
-
-    if(!response.ok) throw new Error('API error');
-
-    const data = await response.json();
-    const list = document.getElementById('slotCallList');
-
-    if(!Array.isArray(data.calls) || data.calls.length === 0){
-      list.innerHTML = `
-        <div class="slotcall-empty">
-          <div class="slotcall-status">
-            <span></span>WAITING FOR SLOT CALLS
-          </div>
-          <div class="slotcall-label">NO SLOT CALLS YET</div>
-          <div class="slotcall-requester">
-            Be the first to call a slot.
-          </div>
-        </div>
-      `;
-      return;
+    try{
+      const response=await fetch(API_BASE + '/api/slot-call', {cache:'no-store'});
+      if(!response.ok) throw new Error('API error');
+      const data=await response.json();
+      const name=document.getElementById('slotName');
+      const requester=document.getElementById('slotRequester');
+      const status=document.querySelector('.slotcall-status');
+      if(data.slot){
+        name.textContent=data.slot.name;
+        requester.textContent='Requested by ' + data.slot.requester;
+        status.innerHTML='<span class="live-dot"></span> LIVE SLOT CALL';
+      }else{
+        name.textContent='NO SLOT CALLED';
+        requester.textContent='Be the first to call a slot.';
+        status.innerHTML='<span></span> WAITING FOR A SLOT CALL';
+      }
+    }catch(e){
+      // Keep the page usable if the backend is temporarily unavailable.
     }
-
-    list.innerHTML = data.calls.map((call, index) => `
-      <div class="slotcall-entry">
-        <div class="slotcall-entry-number">#${index + 1}</div>
-        <div class="slotcall-entry-info">
-          <div class="slotcall-entry-name">${call.name}</div>
-          <div class="slotcall-entry-requester">
-            Requested by ${call.requester}
-          </div>
-        </div>
-      </div>
-    `).join('');
-
-  }catch(e){
-    // Keep the page usable if the backend is temporarily unavailable.
   }
-}
-
-loadSlotCall();
-setInterval(loadSlotCall, 3000);
+  loadSlotCall();
+  setInterval(loadSlotCall, 3000);
 })();
 </script>
 </body>
