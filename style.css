@@ -1305,3 +1305,26 @@ body.weekly-background main > *{
     z-index: 1 !important;
   }
 }
+
+
+/* ===== SLOT CALL ===== */
+.slotcall-section{max-width:1050px}
+.slotcall-card{max-width:900px;margin:0 auto;padding:55px 30px;text-align:center;border:1px solid rgba(35,135,255,.55);border-radius:18px;background:linear-gradient(145deg,#071426,#02060b);box-shadow:0 0 60px rgba(20,110,255,.12)}
+.slotcall-status{display:inline-flex;align-items:center;gap:9px;margin-bottom:22px;padding:9px 14px;border:1px solid rgba(35,135,255,.4);border-radius:999px;color:#8fbfff;font:800 10px Orbitron,sans-serif;letter-spacing:1.5px}
+.slotcall-status span{width:8px;height:8px;border-radius:50%;background:#54677f}
+.slotcall-status .live-dot{background:#36ff8a;box-shadow:0 0 12px rgba(54,255,138,.7)}
+.slotcall-label{color:#6f84a3;font:800 11px Orbitron,sans-serif;letter-spacing:3px;margin-bottom:12px}
+.slotcall-name{color:#fff;font:900 clamp(34px,6vw,68px)/1.05 Orbitron,sans-serif;word-break:break-word;text-shadow:0 0 28px rgba(35,135,255,.25)}
+.slotcall-requester{margin-top:16px;color:#aebbd0;font:700 13px Orbitron,sans-serif;letter-spacing:1px}
+.slotcall-note{max-width:900px;margin:20px auto 0;padding:18px 20px;border:1px solid rgba(45,122,221,.25);border-radius:12px;background:rgba(5,12,22,.7);color:#8194af;font-size:13px;text-align:center}
+.slotcall-note strong{color:#36a0ff;font-family:Orbitron,sans-serif}
+.slotcall-note code{display:inline-block;margin:0 6px;color:#fff;background:#071426;padding:5px 8px;border-radius:5px}
+.slotcall-note span{display:block;margin-top:8px}
+.admin-card{max-width:520px;margin:0 auto;padding:28px;border:1px solid rgba(35,135,255,.45);border-radius:15px;background:linear-gradient(145deg,#071426,#02060b)}
+.admin-card label{display:block;margin-bottom:9px;color:#8ea2bf;font:800 10px Orbitron,sans-serif;letter-spacing:1.5px}
+.admin-card input{box-sizing:border-box;width:100%;padding:14px 15px;margin-bottom:14px;border:1px solid #28517f;border-radius:7px;background:#02060b;color:#fff;font:600 14px Orbitron,sans-serif;outline:none}
+.admin-card input:focus{border-color:#2387ff;box-shadow:0 0 0 2px rgba(35,135,255,.12)}
+.admin-card .btn{width:100%;border:0;cursor:pointer}
+.admin-card .btn:disabled{opacity:.6;cursor:wait}
+.admin-message{min-height:20px;margin-top:14px;text-align:center;color:#8fbfff;font:700 11px Orbitron,sans-serif}
+@media(max-width:520px){.slotcall-card{padding:40px 18px}.slotcall-name{font-size:32px}}

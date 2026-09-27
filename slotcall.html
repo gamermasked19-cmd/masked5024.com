@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASKED_5024 — Slot Call</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="slotcall-page">
+<header class="site-header">
+  <div class="nav">
+    <a class="brand" href="index.html">MASKED<span>_5024</span></a>
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="Open menu">☰</button>
+    <nav>
+      <a href="index.html">🏠 HOME</a>
+      <a href="casinos.html">🎰 CASINOS</a>
+      <a href="slotcall.html" class="active">🎰 SLOT CALL</a>
+      <a href="competition.html">⚔️ COMPETITION</a>
+      <a href="leaderboard.html">🏆 LEADERBOARD</a>
+      <a href="points.html">🎯 POINTS SYSTEM</a>
+      <a href="weekly.html">🔥 WEEKLY CHALLENGES</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="section slotcall-section">
+    <div class="section-heading">
+      <div class="eyebrow">LIVE FROM KICK CHAT</div>
+      <h2>🎰 SLOT <span>CALL</span></h2>
+      <p>Type <strong>!sc your slot</strong> in Kick chat and your request will appear here.</p>
+    </div>
+
+    <div class="slotcall-card" id="slotcallCard" aria-live="polite">
+      <div class="slotcall-status"><span></span> WAITING FOR A SLOT CALL</div>
+      <div class="slotcall-label">CURRENT SLOT CALL</div>
+      <div class="slotcall-name" id="slotName">NO SLOT CALLED</div>
+      <div class="slotcall-requester" id="slotRequester">Be the first to call a slot.</div>
+    </div>
+
+    <div class="slotcall-note">
+      <strong>COMMAND:</strong> <code>!sc Gates of Olympus</code>
+      <span>The latest valid request becomes the current slot call.</span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-brand">MASKED<span>_5024</span></div>
+  <p>© 2026 MASKED_5024. All rights reserved.</p>
+  <p class="fine">18+ only. Gambling can be harmful. Please gamble responsibly. Partner availability, promotions and terms may vary. Affiliate disclosure: links may generate commission for MASKED_5024.</p>
+</footer>
+
+<script>
+(function(){
+  const button=document.querySelector('.mobile-menu-toggle');
+  const nav=document.querySelector('.nav nav');
+  if(button&&nav){
+    button.addEventListener('click',function(){
+      const open=nav.classList.toggle('mobile-open');
+      button.setAttribute('aria-expanded',open?'true':'false');
+    });
+    nav.querySelectorAll('a').forEach(function(link){
+      link.addEventListener('click',function(){
+        nav.classList.remove('mobile-open');
+        button.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+
+  // Replace this with your deployed Cloudflare Worker URL.
+  const API_BASE = 'https://YOUR-SLOT-CALL-WORKER.workers.dev';
+
+  async function loadSlotCall(){
+    try{
+      const response=await fetch(API_BASE + '/api/slot-call', {cache:'no-store'});
+      if(!response.ok) throw new Error('API error');
+      const data=await response.json();
+      const name=document.getElementById('slotName');
+      const requester=document.getElementById('slotRequester');
+      const status=document.querySelector('.slotcall-status');
+      if(data.slot){
+        name.textContent=data.slot.name;
+        requester.textContent='Requested by ' + data.slot.requester;
+        status.innerHTML='<span class="live-dot"></span> LIVE SLOT CALL';
+      }else{
+        name.textContent='NO SLOT CALLED';
+        requester.textContent='Be the first to call a slot.';
+        status.innerHTML='<span></span> WAITING FOR A SLOT CALL';
+      }
+    }catch(e){
+      // Keep the page usable if the backend is temporarily unavailable.
+    }
+  }
+  loadSlotCall();
+  setInterval(loadSlotCall, 3000);
+})();
+</script>
+</body>
+</html>
