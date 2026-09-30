@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASKED_5024 — Admin Panel</title><link rel="stylesheet" href="style.css">
+<style>
+.admin-panel{max-width:1050px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.admin-card{display:block;padding:28px;border:1px solid rgba(35,135,255,.35);border-radius:16px;background:rgba(4,10,20,.9);text-decoration:none;color:#fff;transition:.2s}
+.admin-card:hover{border-color:#2387ff;transform:translateY(-2px)}
+.admin-icon{font-size:34px}.admin-card h3{font:900 20px Orbitron,sans-serif;margin:14px 0 8px}.admin-card p{color:#91a7c5;margin:0;line-height:1.5}
+@media(max-width:800px){.admin-panel{grid-template-columns:1fr}}
+</style></head>
+<body>
+<header class="site-header"><div class="nav"><a class="brand" href="index.html">MASKED<span>_5024</span></a><nav>
+<a href="slotcall-admin.html">🎰 SLOT CALL ADMIN</a><a href="song-admin.html">🎵 SONG REQUEST ADMIN</a><a href="guessbalance-admin.html">💰 GUESS BALANCE ADMIN</a>
+</nav></div></header>
+<main><section class="section"><div class="section-heading"><div class="eyebrow">PRIVATE CONTROL</div><h2>MASKED <span>ADMIN PANEL</span></h2><p>Choose the feature you want to manage.</p></div>
+<div class="admin-panel">
+<a class="admin-card" href="slotcall-admin.html"><div class="admin-icon">🎰</div><h3>SLOT CALL</h3><p>Clear and manage your recent slot calls.</p></a>
+<a class="admin-card" href="song-admin.html"><div class="admin-icon">🎵</div><h3>SONG REQUEST</h3><p>Manage, skip and clear the live song queue.</p></a>
+<a class="admin-card" href="guessbalance-admin.html"><div class="admin-icon">💰</div><h3>GUESS BALANCE</h3><p>Start a round, reveal the balance and clear the round.</p></a>
+</div></section></main>
+</body></html>
