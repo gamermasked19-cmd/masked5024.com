@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASKED_5024 — Guess The Balance</title>
+<link rel="stylesheet" href="style.css">
+<style>
+.gb-page .section{max-width:1100px}
+.gb-card{max-width:900px;margin:0 auto;border:1px solid rgba(35,135,255,.42);border-radius:18px;background:rgba(4,10,20,.9);box-shadow:0 18px 60px rgba(0,0,0,.35);padding:32px}
+.gb-status{font:800 11px Orbitron,sans-serif;letter-spacing:2px;color:#65a9ff;text-align:center;margin-bottom:22px}
+.gb-balance{text-align:center;padding:30px 15px;border:1px solid rgba(255,255,255,.08);border-radius:14px;background:rgba(0,0,0,.24)}
+.gb-balance-label{font:800 11px Orbitron,sans-serif;letter-spacing:3px;color:#9fb0c8}
+.gb-balance-value{font:900 clamp(42px,8vw,76px) Orbitron,sans-serif;color:#fff;margin-top:10px;letter-spacing:2px}
+.gb-instruction{text-align:center;color:#9fb0c8;margin:22px 0 8px;font-size:15px}
+.gb-command{display:inline-block;color:#fff;background:#0b1627;border:1px solid rgba(35,135,255,.3);border-radius:7px;padding:7px 12px;font:800 15px Orbitron,sans-serif}
+.gb-guesses{margin-top:28px}
+.gb-guesses-title{font:800 11px Orbitron,sans-serif;letter-spacing:3px;color:#3b98ff;margin-bottom:12px}
+.gb-list{display:flex;flex-direction:column;gap:8px}
+.gb-row{display:grid;grid-template-columns:55px 1fr auto;align-items:center;gap:12px;padding:12px 15px;border:1px solid rgba(255,255,255,.07);border-radius:10px;background:rgba(0,0,0,.22)}
+.gb-rank{font:800 12px Orbitron,sans-serif;color:#6ea9ff;text-align:center}
+.gb-name{font-weight:800;color:#fff}
+.gb-guess{font:800 15px Orbitron,sans-serif;color:#dceaff}
+.gb-empty{text-align:center;color:#71829b;padding:20px}
+.gb-winner{margin-top:22px;padding:18px;border:1px solid rgba(35,135,255,.5);border-radius:12px;background:rgba(20,80,150,.12);text-align:center}
+.gb-winner-label{font:800 11px Orbitron,sans-serif;letter-spacing:3px;color:#3b98ff}
+.gb-winner-name{font:900 25px Orbitron,sans-serif;margin-top:7px}
+.gb-winner-detail{color:#9fb0c8;margin-top:6px}
+.gb-note{margin-top:18px;text-align:center;color:#71829b;font-size:12px}
+@media(max-width:700px){.gb-card{padding:18px}.gb-row{grid-template-columns:38px 1fr auto;gap:8px;padding:10px}.gb-guess{font-size:13px}}
+</style>
+</head>
+<body class="gb-page">
+<header class="site-header">
+<div class="nav">
+<a class="brand" href="index.html">MASKED<span>_5024</span></a>
+<button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-label="Open menu">☰</button>
+<nav>
+<a href="index.html">🏠 HOME</a>
+<a href="casinos.html">🎰 CASINOS</a>
+<a href="slotcall.html">🎰 SLOT CALL</a>
+<a href="songrequest.html">🎵 SONG REQUEST</a>
+<a href="guessbalance.html" class="active">💰 GUESS BALANCE</a>
+<a href="leaderboard.html">🏆 LEADERBOARD</a>
+</nav>
+</div>
+</header>
+<main>
+<section class="section">
+<div class="section-heading">
+<div class="eyebrow">LIVE FROM KICK CHAT</div>
+<h2>💰 GUESS THE <span>BALANCE</span></h2>
+<p>Think you know the balance? Drop your guess in Kick chat using <strong>!GB $200.45</strong> or <strong>!GB 200.45</strong>.</p>
+</div>
+<div class="gb-card" aria-live="polite">
+<div class="gb-status" id="gbStatus">● WAITING FOR A ROUND</div>
+<div class="gb-balance">
+<div class="gb-balance-label">CURRENT BALANCE</div>
+<div class="gb-balance-value" id="gbBalance">??????</div>
+</div>
+<div class="gb-instruction">ENTER YOUR GUESS IN KICK CHAT</div>
+<div style="text-align:center"><span class="gb-command">!GB $200.45</span></div>
+<div class="gb-guesses">
+<div class="gb-guesses-title">GUESSES <span id="gbCount">(0)</span></div>
+<div class="gb-list" id="gbList"><div class="gb-empty">No guesses yet.</div></div>
+</div>
+<div id="gbWinner"></div>
+<div class="gb-note">One guess per viewer per round. The first valid guess from each viewer is kept.</div>
+</div>
+</section>
+</main>
+<script>
+(function(){
+const API_BASE="https://masked-slot-call.gamermasked19.workers.dev";
+const statusEl=document.getElementById('gbStatus'), balanceEl=document.getElementById('gbBalance');
+const listEl=document.getElementById('gbList'), countEl=document.getElementById('gbCount'), winnerEl=document.getElementById('gbWinner');
+function money(v){return '$'+Number(v).toLocaleString('en-NZ',{minimumFractionDigits:2,maximumFractionDigits:2});}
+async function refresh(){
+ try{
+  const r=await fetch(API_BASE+'/api/guess-balance?_='+Date.now(),{cache:'no-store'});
+  if(!r.ok) throw new Error();
+  const s=await r.json();
+  statusEl.textContent=s.active ? (s.revealed ? '● BALANCE REVEALED' : '● ROUND LIVE') : '● WAITING FOR A ROUND';
+  balanceEl.textContent=s.revealed && s.target!==null ? money(s.target) : '??????';
+  const guesses=Array.isArray(s.guesses)?s.guesses:[];
+  countEl.textContent='('+guesses.length+')';
+  if(!guesses.length) listEl.innerHTML='<div class="gb-empty">No guesses yet. Be the first!</div>';
+  else listEl.innerHTML=guesses.map((g,i)=>'<div class="gb-row"><div class="gb-rank">#'+(i+1)+'</div><div class="gb-name">'+escapeHtml(g.username)+'</div><div class="gb-guess">'+money(g.guess)+'</div></div>').join('');
+  if(s.revealed && s.winner){
+   winnerEl.innerHTML='<div class="gb-winner"><div class="gb-winner-label">🏆 CLOSEST GUESS</div><div class="gb-winner-name">'+escapeHtml(s.winner.username)+'</div><div class="gb-winner-detail">'+money(s.winner.guess)+' — '+money(s.winner.difference)+' away</div></div>';
+  } else winnerEl.innerHTML='';
+ }catch(e){statusEl.textContent='● CONNECTING...';}
+}
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+refresh(); setInterval(refresh,3000);
+})();
+</script>
+<script>
+(function(){const b=document.querySelector('.mobile-menu-toggle'),n=document.querySelector('.nav nav');if(b&&n)b.addEventListener('click',()=>{const o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));n.classList.toggle('mobile-open',!o);});})();
+</script>
+</body>
+</html>

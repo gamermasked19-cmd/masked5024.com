@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>MASKED_5024 — Guess Balance Admin</title><link rel="stylesheet" href="style.css">
+<style>
+.gb-admin{max-width:700px;margin:auto;border:1px solid rgba(35,135,255,.4);border-radius:18px;background:rgba(4,10,20,.9);padding:28px}
+.gb-admin label{display:block;font:800 11px Orbitron,sans-serif;letter-spacing:2px;color:#9fb0c8;margin-bottom:8px}
+.gb-admin input{width:100%;padding:14px;border-radius:8px;border:1px solid #28496f;background:#050b14;color:#fff;margin-bottom:14px;font-size:16px}
+.gb-actions{display:flex;gap:10px;flex-wrap:wrap}.gb-actions .btn{flex:1;min-width:150px}
+.gb-msg{margin-top:15px;color:#91a7c5;min-height:22px}
+.gb-admin-note{margin-top:18px;color:#71829b;font-size:12px;line-height:1.5}
+</style></head>
+<body><header class="site-header"><div class="nav"><a class="brand" href="index.html">MASKED<span>_5024</span></a><nav><a href="index.html">🏠 HOME</a><a href="guessbalance.html">💰 GUESS BALANCE</a></nav></div></header>
+<main><section class="section"><div class="section-heading"><div class="eyebrow">PRIVATE CONTROL</div><h2>GUESS THE <span>BALANCE ADMIN</span></h2><p>Start a round, reveal the balance, or clear the current round.</p></div>
+<div class="gb-admin">
+<label for="token">Admin token</label><input id="token" type="password" autocomplete="off" placeholder="Enter your private admin token">
+<label for="target">Actual balance</label><input id="target" inputmode="decimal" placeholder="200.45">
+<div class="gb-actions"><button id="start" class="btn primary" type="button">START NEW ROUND</button><button id="reveal" class="btn ghost" type="button">REVEAL BALANCE</button><button id="clear" class="btn ghost" type="button">CLEAR ROUND</button></div>
+<div id="msg" class="gb-msg" aria-live="polite"></div>
+<div class="gb-admin-note">Enter the real balance before starting. The public page will keep it hidden until you press REVEAL BALANCE.</div>
+</div></section></main>
+<script>
+(function(){
+const API_BASE="https://masked-slot-call.gamermasked19.workers.dev", token=document.getElementById('token'), target=document.getElementById('target'), msg=document.getElementById('msg');
+async function act(action){
+ msg.textContent='Working...';
+ try{
+  const body={action};
+  if(action==='start') body.target=Number(String(target.value).replace('$','').replace(/,/g,'').trim());
+  const r=await fetch(API_BASE+'/api/guess-balance',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+token.value},body:JSON.stringify(body)});
+  const d=await r.json().catch(()=>({})); if(!r.ok) throw new Error(d.error||'Request failed');
+  msg.textContent=action==='start'?'✓ New Guess the Balance round started.':action==='reveal'?'✓ Balance revealed.':'✓ Round cleared.';
+ }catch(e){msg.textContent='✕ '+e.message;}
+}
+document.getElementById('start').onclick=()=>act('start');document.getElementById('reveal').onclick=()=>act('reveal');document.getElementById('clear').onclick=()=>act('clear');
+})();
+</script></body></html>
