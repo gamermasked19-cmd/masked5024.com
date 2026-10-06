@@ -1,62 +1,23 @@
 <!DOCTYPE html>
-<!-- saved from url=(0042)https://masked5024.com/slotcall-admin.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MASKED_5024 — Slot Call Admin</title>
-  <link rel="stylesheet" href="./MASKED_5024 — Slot Call Admin_files/style.css">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MASKED_5024 — Slot Call Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#050509;color:#f4f4f7;font-family:Orbitron,Arial,sans-serif}body{background:radial-gradient(circle at 50% 0%,rgba(100,40,180,.18),transparent 42%),linear-gradient(180deg,#08080d 0%,#030305 100%);min-height:100vh}.site-header{position:sticky;top:0;z-index:10;background:rgba(5,5,9,.94);border-bottom:1px solid rgba(170,80,255,.35);box-shadow:0 0 28px rgba(120,40,220,.14)}.nav{max-width:1400px;margin:0 auto;min-height:78px;padding:14px 24px;display:flex;align-items:center;gap:28px}.brand{color:#fff;text-decoration:none;font-size:24px;font-weight:900;letter-spacing:1px;white-space:nowrap;text-shadow:0 0 14px rgba(170,80,255,.45)}.brand span{color:#9d4edd}.nav nav{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-left:auto}.nav nav a{color:#d7d2df;text-decoration:none;font-size:12px;font-weight:700;letter-spacing:.5px;padding:11px 12px;border:1px solid transparent;border-radius:8px;transition:.2s}.nav nav a:hover,.nav nav a.active{color:#fff;border-color:rgba(157,78,221,.7);background:rgba(157,78,221,.12);box-shadow:0 0 16px rgba(157,78,221,.15)}main{max-width:1100px;margin:0 auto;padding:70px 24px}.section{padding:0}.section-heading{text-align:center;margin-bottom:34px}.eyebrow{font-size:12px;letter-spacing:4px;color:#a970ff;font-weight:800;margin-bottom:12px}.section-heading h2{margin:0;font-size:42px;line-height:1.15;letter-spacing:1px;text-shadow:0 0 20px rgba(157,78,221,.22)}.section-heading h2 span{color:#9d4edd}.section-heading p{max-width:720px;margin:16px auto 0;color:#aaa6b2;font-family:Arial,sans-serif;font-size:15px;line-height:1.6}.admin-card{max-width:760px;margin:0 auto;padding:30px;background:linear-gradient(145deg,rgba(22,17,31,.96),rgba(8,8,13,.96));border:1px solid rgba(157,78,221,.45);border-radius:16px;box-shadow:0 0 35px rgba(88,35,150,.16),inset 0 0 35px rgba(157,78,221,.035)}label{display:block;color:#d8d2df;font-size:12px;font-weight:700;letter-spacing:1px;margin:0 0 9px}input{width:100%;height:46px;border:1px solid rgba(157,78,221,.4);border-radius:8px;background:#08080d;color:#fff;padding:0 13px;font:500 14px Arial,sans-serif;outline:none;margin-bottom:18px}input:focus{border-color:#a970ff;box-shadow:0 0 0 3px rgba(157,78,221,.12)}.btn{border:1px solid rgba(157,78,221,.65);border-radius:8px;background:rgba(157,78,221,.1);color:#fff;padding:13px 18px;font:800 12px Orbitron,Arial,sans-serif;letter-spacing:.7px;cursor:pointer;transition:.2s}.btn:hover{background:rgba(157,78,221,.2);box-shadow:0 0 18px rgba(157,78,221,.18)}.btn.primary{background:linear-gradient(135deg,#7b2cbf,#9d4edd);border-color:#b77aff;box-shadow:0 0 20px rgba(157,78,221,.22)}.btn:disabled{opacity:.55;cursor:not-allowed}.admin-message{min-height:24px;margin-top:16px;color:#b9a7ca;font:600 13px Arial,sans-serif}.admin-message:empty{min-height:0}@media(max-width:800px){.nav{align-items:flex-start;flex-direction:column;gap:12px}.nav nav{margin-left:0;width:100%}.nav nav a{font-size:10px;padding:9px 8px}.section-heading h2{font-size:30px}.admin-card{padding:22px}main{padding:45px 16px}}
+</style>
 </head>
 <body class="slotcall-page">
-<header class="site-header">
-  <div class="nav">
-    <a class="brand" href="https://masked5024.com/index.html">MASKED<span>_5024</span></a>
-    <nav><a href="https://masked5024.com/slotcall-admin.html" class="active">🎰 SLOT CALL ADMIN</a><a href="https://masked5024.com/song-admin.html">🎵 SONG REQUEST ADMIN</a><a href="https://masked5024.com/guessbalance-admin.html">💰 GUESS BALANCE ADMIN</a><a href="https://masked5024.com/bonushunt-admin.html">🎰 BONUS HUNT ADMIN</a></nav>
-  </div>
-</header>
-
-<main>
-  <section class="section slotcall-section">
-    <div class="section-heading">
-      <div class="eyebrow">PRIVATE CONTROL</div>
-      <h2>SLOT CALL <span>ADMIN</span></h2>
-      <p>Use this page to clear the current slot call and the recent request history after your stream.</p>
-    </div>
-
-    <div class="admin-card">
-      <label for="adminToken">Admin token</label>
-      <input id="adminToken" type="password" autocomplete="off" placeholder="Enter your private admin token">
-      <button id="clearButton" class="btn primary" type="button">CLEAR SLOT CALL</button>
-      <div id="adminMessage" class="admin-message" aria-live="polite"></div>
-    </div>
-  </section>
-</main>
-
-<script>
-(function(){
-  const API_BASE='https://masked-slot-call.gamermasked19.workers.dev';
-  const token=document.getElementById('adminToken');
-  const button=document.getElementById('clearButton');
-  const message=document.getElementById('adminMessage');
-
-  button.addEventListener('click', async function(){
-    message.textContent='Clearing...';
-    button.disabled=true;
-    try{
-      const response=await fetch(API_BASE+'/api/slot-call',{
-        method:'DELETE',
-        headers:{'Authorization':'Bearer '+token.value}
-      });
-      if(!response.ok) throw new Error('Could not clear slot call');
-      message.textContent='✓ Slot call cleared.';
-    }catch(e){
-      message.textContent='Could not clear the slot call. Check the token and Worker URL.';
-    }finally{
-      button.disabled=false;
-    }
-  });
-})();
-</script>
-<script type="module" src="./MASKED_5024 — Slot Call Admin_files/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4791789ab64c4865aa9b81180d44f010&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
-
-
+<header class="site-header"><div class="nav">
+<a class="brand" href="https://masked5024.com/index.html">MASKED<span>_5024</span></a>
+<nav><a href="https://masked5024.com/slotcall-admin.html" class="active">🎰 SLOT CALL ADMIN</a><a href="https://masked5024.com/song-admin.html">🎵 SONG REQUEST ADMIN</a><a href="https://masked5024.com/guessbalance-admin.html">💰 GUESS BALANCE ADMIN</a><a href="https://masked5024.com/bonushunt-admin.html">🎰 BONUS HUNT ADMIN</a></nav>
+</div></header>
+<main><section class="section slotcall-section"><div class="section-heading"><div class="eyebrow">PRIVATE CONTROL</div><h2>SLOT CALL <span>ADMIN</span></h2><p>Use this page to clear the current slot call and the recent request history after your stream.</p></div>
+<div class="admin-card"><label for="adminToken">Admin token</label><input id="adminToken" type="password" autocomplete="off" placeholder="Enter your private admin token"><button id="clearButton" class="btn primary" type="button">CLEAR SLOT CALL</button><div id="adminMessage" class="admin-message" aria-live="polite"></div></div>
+</section></main>
+<script>(function(){const API_BASE='https://masked-slot-call.gamermasked19.workers.dev';const token=document.getElementById('adminToken');const button=document.getElementById('clearButton');const message=document.getElementById('adminMessage');button.addEventListener('click',async function(){message.textContent='Clearing...';button.disabled=true;try{const response=await fetch(API_BASE+'/api/slot-call',{method:'DELETE',headers:{'Authorization':'Bearer '+token.value}});if(!response.ok)throw new Error();message.textContent='✓ Slot call cleared.'}catch(e){message.textContent='Could not clear the slot call. Check the token and Worker URL.'}finally{button.disabled=false}})})();</script>
 </body></html>
