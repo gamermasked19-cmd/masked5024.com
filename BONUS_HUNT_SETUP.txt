@@ -1,0 +1,11 @@
+MASKED_5024 BONUS HUNT ADMIN
+
+1. Replace your existing slotcall-admin.html with the included slotcall-admin.html. It is your uploaded file with only one new navigation link added.
+2. Upload bonushunt-admin.html to the same website root.
+3. Your existing Worker already contains isolated GET/PUT/DELETE /api/bonus-hunt endpoints using the KV key bonus:hunt.
+4. IMPORTANT: the Worker CORS allow-methods currently needs PUT added. Change only:
+   "GET,POST,DELETE,OPTIONS"
+   to:
+   "GET,POST,PUT,DELETE,OPTIONS"
+   Do not replace the Worker with a simplified version.
+5. The Bonus Hunt page only calls /api/bonus-hunt. It does not call Slot Call, Song Request, or Guess Balance endpoints.
