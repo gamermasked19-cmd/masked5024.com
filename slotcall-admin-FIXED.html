@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://masked5024.com/slotcall-admin.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MASKED_5024 — Slot Call Admin</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body class="slotcall-page">
+<header class="site-header">
+  <div class="nav">
+    <a class="brand" href="https://masked5024.com/index.html">MASKED<span>_5024</span></a>
+    <nav><a href="https://masked5024.com/slotcall-admin.html" class="active">🎰 SLOT CALL ADMIN</a><a href="https://masked5024.com/song-admin.html">🎵 SONG REQUEST ADMIN</a><a href="https://masked5024.com/guessbalance-admin.html">💰 GUESS BALANCE ADMIN</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="section slotcall-section">
+    <div class="section-heading">
+      <div class="eyebrow">PRIVATE CONTROL</div>
+      <h2>SLOT CALL <span>ADMIN</span></h2>
+      <p>Use this page to clear the current slot call and the recent request history after your stream.</p>
+    </div>
+
+    <div class="admin-card">
+      <label for="adminToken">Admin token</label>
+      <input id="adminToken" type="password" autocomplete="off" placeholder="Enter your private admin token">
+      <button id="clearButton" class="btn primary" type="button">CLEAR SLOT CALL</button>
+      <div id="adminMessage" class="admin-message" aria-live="polite"></div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  const API_BASE='https://masked-slot-call.gamermasked19.workers.dev';
+  const token=document.getElementById('adminToken');
+  const button=document.getElementById('clearButton');
+  const message=document.getElementById('adminMessage');
+
+  button.addEventListener('click', async function(){
+    message.textContent='Clearing...';
+    button.disabled=true;
+    try{
+      const response=await fetch(API_BASE+'/api/slot-call',{
+        method:'DELETE',
+        headers:{'Authorization':'Bearer '+token.value}
+      });
+      if(!response.ok) throw new Error('Could not clear slot call');
+      message.textContent='✓ Slot call cleared.';
+    }catch(e){
+      message.textContent='Could not clear the slot call. Check the token and Worker URL.';
+    }finally{
+      button.disabled=false;
+    }
+  });
+})();
+</script>
+<script type="module" src="./MASKED_5024 — Slot Call Admin_files/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495" integrity="sha512-iIg7k2xntmwu6/uSb5tpc/hySgZc4eoL31yB29W6tJFo2akwjPWcEqnCEdJvGexCL0KEQwVYv5BlowfhVz26hg==" data-cf-beacon="{&quot;version&quot;:&quot;2024.11.0&quot;,&quot;token&quot;:&quot;4791789ab64c4865aa9b81180d44f010&quot;,&quot;r&quot;:1,&quot;spa&quot;:2}" crossorigin="anonymous"></script>
+
+
+</body></html>
